@@ -39,7 +39,7 @@ def main():
     args = parser.parse_args()
 
     ########################## init ##########################
-    gs.init(backend=gs.metal)
+    gs.init(backend=gs.cuda)
     # gs.init(backend=gs.cpu if args.cpu else gs.gpu, logging_level=None)
 
     ########################## scene setup ##########################
@@ -76,7 +76,13 @@ def main():
     solver = scene.sim.rigid_solver
 
     # add entities
-    scene.add_entity(gs.morphs.Plane())
+    # scene.add_entity(gs.morphs.Plane())
+    # Ground plane
+    plane = scene.add_entity(gs.morphs.Mesh(file = "./My_asset/Ground_entity.stl",
+        pos = (0, 0, -.2),
+        )
+    )
+    
 
     # Crank-slider system
     Crank_slider_system = scene.add_entity(
@@ -113,7 +119,7 @@ def main():
         'Revolute 50',
         'Slider 61',
     ]
-    dofs_idx = [Crank_slider_system.get_joint(name).dof_idx_local for name in jnt_names]
+    dofs_idx = [Crank_slider_system.get_joint(name).dof_idx_local for name in jnt_names] 
 
     tablet_link_name = ("Tablet", "segment")
     tablet = scene.add_entity(

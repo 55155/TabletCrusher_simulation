@@ -5,7 +5,7 @@ import numpy as np
 # with open('/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/src/config.yaml', 'r') as file:
 #     config = yaml.load(file, Loader=yaml.Loader)
 
-gs.init(backend=gs.metal)
+gs.init(backend=gs.gpu)
 
 scene = gs.Scene(
     show_viewer=True,
@@ -49,12 +49,13 @@ fn = f'./My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Crank_slider_sy
 
 # Adding a Crank_slider_system entity to the scene
     # Crank-slider system
+# "/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crusher_description/urdf/Crusher.xml"
 Crank_slider_system = scene.add_entity(
         gs.morphs.MJCF(
-            file = "My_asset/Crank_slider_system_V3_Pjoint_Posmod_description/urdf/" \
-            "Crank_slider_system_V3_Pjoint_Posmod.xml",
+            file = "./My_asset/Crusher_description/urdf/" \
+            "Crusher.xml",
             pos = (0.0, 0.0,0.0),
-            scale = 10.0,
+            scale = 1.0,
         ),
         surface=gs.surfaces.Default(
             smooth=False,
@@ -79,6 +80,7 @@ link_name = [
     "motor_shaft_1",
     "Link2_1",
     "Link3_1",
+    # "shaft_1",
     # "Shaft_1",
 ]
 links = [Crank_slider_system.get_link(name) for name in link_name]
@@ -91,10 +93,11 @@ for i, name in enumerate(link_name):
 
 
 jnt_names = [
-    'Revolute 47',
-    'Revolute 49',
-    'Revolute 50',
-    # 'Slider 61',
+    "Revolute 10",
+    "Revolute 12",
+    "Revolute 13",
+    # "Slider 21",
+    # 'Slider 61'
 ]
 dofs_idx = [Crank_slider_system.get_joint(name).dof_idx_local for name in jnt_names]
 
@@ -110,23 +113,23 @@ l = 0.08 # connecting rod length
 
 # velocity command 
 crank_velocity = 1/3* np.pi  # 1/3 pi rad/s
-vel_command = np.array([crank_velocity,0,0])
+vel_command = np.array([crank_velocity,0,0,0])
 
 # force command
-crank_torque = 10.0  # N·m
-epsilon = 1e-6
+crank_torque = 100.0  # N·m
+epsilon = 0
 force_command = np.array([crank_torque,epsilon,epsilon])
 
 cam.start_recording()
 normal = cam.render()
-iter = 200
+iter =1000
 
 Crank_slider_system.set_dofs_kp(
-    kp = np.array([0.1,.1,.1]),
+    kp = np.array([100, 0,1]),
     dofs_idx_local = dofs_idx,
 )
 Crank_slider_system.set_dofs_kv(
-    kv = np.array([0.1,0.1,0.1]),
+    kv = np.array([100,0,1]),
     dofs_idx_local = dofs_idx,
 )
 
@@ -134,7 +137,7 @@ Crank_slider_system.set_dofs_kv(
 #     lower = (-0.0625, 0, 0,0.0),
 #     upper = (0.0625, 0, 0,0.0),
 # )
-Crank_slider_system.control_dofs_force(force_command, dofs_idx)
+# Crank_slider_system.control_dofs_force(force_command, dofs_idx)
 # Crank_slider_system.control_dofs_velocity(vel_command, dofs_idx)
 
 # Crank_slider_system.control_dofs_position(pos_command, dofs_idx)
@@ -142,8 +145,8 @@ print(Crank_slider_system.get_dofs_force())
 
 for i in range(iter):
     scene.step()
-    Crank_slider_system.control_dofs_force(force_command, dofs_idx)
-    Crank_slider_system.control_dofs_position([0,0,0], dofs_idx)
+    Crank_slider_system.control_dofs_velocity(force_command, dofs_idx)
+    # Crank_slider_system.control_dofs_position([0,0,0], dofs_idx)
 
     cam.set_pose(        
         pos = (10,2,5),
@@ -153,4 +156,4 @@ for i in range(iter):
     cam.render()
 
 
-cam.stop_recording(save_to_filename =  "./video/Error_20251020_4.mp4")
+cam.stop_recording(save_to_filename =  "./video/Error_20251102_2.mp4")
