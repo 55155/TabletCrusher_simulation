@@ -55,7 +55,7 @@ Crank_slider_system = scene.add_entity(
             file = "./My_asset/Crusher_description/urdf/" \
             "Crusher.xml",
             pos = (0.0, 0.0,0.0),
-            scale = 1.0,
+            scale = 10.0,
         ),
         surface=gs.surfaces.Default(
             smooth=False,
@@ -78,8 +78,8 @@ scene.build()
 
 link_name = [
     "motor_shaft_1",
-    "Link2_1",
-    "Link3_1",
+    # "Link2_1",
+    # "Link3_1",
     # "shaft_1",
     # "Shaft_1",
 ]
@@ -94,8 +94,8 @@ for i, name in enumerate(link_name):
 
 jnt_names = [
     "Revolute 10",
-    "Revolute 12",
-    "Revolute 13",
+    # "Revolute 12",
+    # "Revolute 13",
     # "Slider 21",
     # 'Slider 61'
 ]
@@ -116,22 +116,23 @@ crank_velocity = 1/3* np.pi  # 1/3 pi rad/s
 vel_command = np.array([crank_velocity,0,0,0])
 
 # force command
-crank_torque = 100.0  # N·m
+crank_torque = 10.0  # N·m
 epsilon = 0
-force_command = np.array([crank_torque,epsilon,epsilon])
+force_command = np.array([crank_torque])
 
 cam.start_recording()
 normal = cam.render()
 iter =1000
 
 Crank_slider_system.set_dofs_kp(
-    kp = np.array([100, 0,1]),
+    kp = np.array([100]),
     dofs_idx_local = dofs_idx,
 )
 Crank_slider_system.set_dofs_kv(
-    kv = np.array([100,0,1]),
+    kv = np.array([0.0]),
     dofs_idx_local = dofs_idx,
 )
+# Crank_slider_system.set_dofs_velocity(force_command, [0])
 
 # Crank_slider_system.set_dofs_force_range(
 #     lower = (-0.0625, 0, 0,0.0),
@@ -145,8 +146,9 @@ print(Crank_slider_system.get_dofs_force())
 
 for i in range(iter):
     scene.step()
-    Crank_slider_system.control_dofs_velocity(force_command, dofs_idx)
+    # Crank_slider_system.control_dofs_velocity(force_command, dofs_idx)
     # Crank_slider_system.control_dofs_position([0,0,0], dofs_idx)
+    Crank_slider_system.control_dofs_velocity(force_command, [0])
 
     cam.set_pose(        
         pos = (10,2,5),
@@ -156,4 +158,7 @@ for i in range(iter):
     cam.render()
 
 
-cam.stop_recording(save_to_filename =  "./video/Error_20251102_2.mp4")
+cam.stop_recording(save_to_filename =  "./video/Error_20251104_3.mp4")
+
+
+# 원인 : set을 사용하면, 초기 속도는 설정이 되나, 그 이후의 제어가 안되는 문제 발생.
