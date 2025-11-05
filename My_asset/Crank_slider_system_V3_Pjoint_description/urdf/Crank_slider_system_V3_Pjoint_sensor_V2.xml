@@ -69,7 +69,7 @@
         <body name="Link3_1" pos="0.094 0 0">
           <inertial pos="0.0111852 0 -0.005" quat="0 0.707107 0 0.707107" mass="0.0459884" diaginertia="5e-06 4e-06 2e-06"/>
           <joint name="Revolute 50" pos="0 0 0" axis="0 0 -1"/>
-            <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1"/>
         </body>
       </body>
     </body>

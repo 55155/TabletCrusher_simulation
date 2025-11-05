@@ -28,7 +28,7 @@ from genesis.recorders.plotters import IS_MATPLOTLIB_AVAILABLE, IS_PYQTGRAPH_AVA
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-dt", "--timestep", type=float, default=0.01, help="Simulation time step")
+    parser.add_argument("-dt", "--timestep", type=float, default=0.005, help="Simulation time step")
     parser.add_argument("-v", "--vis", action="store_true", default=True, help="Show visualization GUI")
     parser.add_argument("-nv", "--no-vis", action="store_false", dest="vis", help="Disable visualization GUI")
     parser.add_argument("-c", "--cpu", action="store_true", help="Use CPU instead of GPU")
@@ -39,7 +39,7 @@ def main():
     args = parser.parse_args()
 
     ########################## init ##########################
-    gs.init(backend=gs.cuda)
+    gs.init(backend=gs.metal)
     # gs.init(backend=gs.cpu if args.cpu else gs.gpu, logging_level=None)
 
     ########################## scene setup ##########################
@@ -49,6 +49,7 @@ def main():
             dt=args.timestep,
         ),
         rigid_options=gs.options.RigidOptions(
+            # constraint_timeconst -> weld 판단 
             constraint_timeconst=max(0.01, 2 * args.timestep),
             use_gjk_collision=True,
         ),
@@ -87,8 +88,8 @@ def main():
     # Crank-slider system
     Crank_slider_system = scene.add_entity(
         gs.morphs.MJCF(
-            file = "My_asset/Crank_slider_system_V3_Pjoint_Posmod_description/urdf/" \
-            "Crank_slider_system_V3_Pjoint_Posmod.xml",
+            file = "My_asset/Crusher_description/urdf/" \
+            "Crusher.xml",
             pos = (0, 0.0, 0),
             scale = 10.0,
         ),
@@ -101,8 +102,7 @@ def main():
     "motor_shaft_1",
     "Link2_1",
     "Link3_1",
-    "Shaft_1",
-    "Wall_1",
+    "shaft_1",
     ]
     links = [Crank_slider_system.get_link(name) for name in link_name]
     link_idx = {link_name[i]: [None, None] for i in range(len(link_name))}
@@ -127,7 +127,7 @@ def main():
             file = "My_asset/Tablet_posmod/Tablet_posmod.xml",
             # Crank_slider_system, Wall position = 0.353 0.01 -0.22
             euler = (90,0,0),
-            pos = (-0.6, 3.38, 5),
+            pos = (0.0475 -0.2365 -0.05),
             scale = 20.0,
         )
     )
@@ -254,19 +254,20 @@ def main():
         # cam.set_pose(pos = (5, 3.5, 2.5), lookat = (0, 3.5, 0))
 
         for _ in range(steps):
-            Crankslider.calculate_positions()
-            temp = Crankslider.get_inversion_angles_at_time(1, _, in_degrees=False)
-            R1 = temp['crank_angle']
-            temp = Crankslider.get_inversion_angles_at_time(1, _, in_degrees=False)
-            R2 = temp['rod_angle']
-            temp = Crankslider.get_inversion_angles_at_time(1, _, in_degrees=False)
-            R3 = temp["rod_angle"]
-            P1 = temp['slider_position']
-            
+            # Crankslider.calculate_positions()
+            # temp = Crankslider.get_inversion_angles_at_time(1, _, in_degrees=False)
+            # R1 = temp['crank_angle']
+            # temp = Crankslider.get_inversion_angles_at_time(1, _, in_degrees=False)
+            # R2 = temp['rod_angle']
+            # temp = Crankslider.get_inversion_angles_at_time(1, _, in_degrees=False)
+            # R3 = temp["rod_angle"]
+            # P1 = temp['slider_position']
+            desired_position = [100.0, 0, 0, 0]
 
-            desired_position = [R1, 0, 0, 0]
+            # desired_position = [R1, 0, 0, 0]
             # Crank_slider_system.set_dofs_position(desired_position, dofs_idx)
-            Crank_slider_system.control_dofs_velocity(target_force_list, dofs_idx)
+            Crank_slider_system.set_dofs_velocity(desired_position, )
+            # Crank_slider_system.control_dofs_velocity(target_force_list, dofs_idx)
             # 일부 노이즈 발생. 
             # print(sensor.read())
             cam.render()

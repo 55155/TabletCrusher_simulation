@@ -26,8 +26,7 @@ print(data.)
 
 import numpy as np
 from stl import mesh
-
-your_mesh = mesh.Mesh.from_file('/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/motor_shaft_1.stl')
+your_mesh = mesh.Mesh.from_file('./My_asset/Crusher_description/urdf/Wall_1.stl')
 min_corner = np.min(your_mesh.vectors, axis=(0,1))
 max_corner = np.max(your_mesh.vectors, axis=(0,1))
 print("motor shaft 최소 좌표:", min_corner)
