@@ -7,28 +7,16 @@ import roma
 import torch
 import math as m
 
-
 # 오일러 각을 회전 행렬로 변환
 euler_angles = [90, 0, 90]  # degrees
 R = roma.euler_to_rotmat('XYZ', euler_angles, degrees=True)
-
-# # Rigid 변환 생성
-# T = roma.Rigid(linear=R, translation=torch.zeros(3))
-
-# # 포인트 변환
-# points = torch.tensor([[1.0, 1.0, 1.0]])
-# transformed_points = T[None].apply(points)
-
-# print(transformed_points)
-
-
 
 import genesis as gs
 from genesis.recorders.plotters import IS_MATPLOTLIB_AVAILABLE, IS_PYQTGRAPH_AVAILABLE
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-dt", "--timestep", type=float, default=0.005, help="Simulation time step")
+    parser.add_argument("-dt", "--timestep", type=float, default=0.0005, help="Simulation time step")
     parser.add_argument("-v", "--vis", action="store_true", default=True, help="Show visualization GUI")
     parser.add_argument("-nv", "--no-vis", action="store_false", dest="vis", help="Disable visualization GUI")
     parser.add_argument("-c", "--cpu", action="store_true", help="Use CPU instead of GPU")
@@ -50,7 +38,7 @@ def main():
         ),
         rigid_options=gs.options.RigidOptions(
             # constraint_timeconst -> weld 판단 
-            constraint_timeconst=max(0.01, 2 * args.timestep),
+            # constraint_timeconst=max(0.01, 2 * args.timestep),
             use_gjk_collision=True,
         ),
         vis_options=gs.options.VisOptions(
@@ -76,19 +64,10 @@ def main():
     # rigid solver : for add_constaraints
     solver = scene.sim.rigid_solver
 
-    # add entities
-    # scene.add_entity(gs.morphs.Plane())
-    # Ground plane
-    plane = scene.add_entity(gs.morphs.Mesh(file = "./My_asset/Ground_entity.stl",
-        pos = (0, 0, -.2),
-        )
-    )
-    
-
     # Crank-slider system
     Crank_slider_system = scene.add_entity(
         gs.morphs.MJCF(
-            file = "My_asset/Crusher_description/urdf/" \
+            file = "./My_asset/Crusher_description/urdf/" \
             "Crusher.xml",
             pos = (0, 0.0, 0),
             scale = 10.0,
@@ -103,6 +82,7 @@ def main():
     "Link2_1",
     "Link3_1",
     "shaft_1",
+    "Wall_1"
     ]
     links = [Crank_slider_system.get_link(name) for name in link_name]
     link_idx = {link_name[i]: [None, None] for i in range(len(link_name))}
@@ -114,10 +94,10 @@ def main():
 
     # Crank-slider system Joint index
     jnt_names = [
-        'Revolute 47',
-        'Revolute 49',
-        'Revolute 50',
-        'Slider 61',
+        "Revolute 10",
+        "Revolute 12",
+        "Revolute 13",
+        "Slider 21"
     ]
     dofs_idx = [Crank_slider_system.get_joint(name).dof_idx_local for name in jnt_names] 
 
@@ -125,9 +105,11 @@ def main():
     tablet = scene.add_entity(
         gs.morphs.MJCF(
             file = "My_asset/Tablet_posmod/Tablet_posmod.xml",
-            # Crank_slider_system, Wall position = 0.353 0.01 -0.22
             euler = (90,0,0),
-            pos = (0.0475 -0.2365 -0.05),
+            # Wall : postion : -60, 300, 50
+            # motor shaft 최소 좌표: [-120.  340.   10.]
+            # motor shaft 최대 좌표: [  0. 400.  90.]
+            pos = (-0.5, 3.2, .5),
             scale = 20.0,
         )
     )
@@ -185,10 +167,6 @@ def main():
     # link2_idx_arr = np.array(link2.idx, dtype=gs.np_int)
     # solver.add_weld_constraint(link1_idx_arr, link2_idx_arr)
 
-    # Wall position global : (-0.4435, 0.1300, 0.0500), local tablet_pos = (-0.3, 0.0, 0.0)
-    # Wall position == Tablet position
-    # tablet position = 0.353 0.01 -0.22 -> 90 0 90 euler
-
     tablet_pos = Crank_slider_system.get_links_pos(link_idx["Wall_1"][0])
     tablet_pos = tablet_pos.tolist()
     tablet_pos[0][2] += 0.05  # Wall 의 두께 고려
@@ -235,18 +213,14 @@ def main():
     # def control_dofs_velocity(self, velocity:, dofs_idx_local=None, envs_idx=None, *, unsafe=False):
     target_velocity = m.pi / 2 # angular velocity rad/s ..? 
     target_velocity_list = [target_velocity if i == 0 else 1.0 for i in range(len(dofs_idx))]
-    # Crank_slider_system.set_dofs_velocity(target_velocity_list, dofs_idx)
-    # Crank_slider_system.set_dofs_position(target_velocity_list, dofs_idx)
 
     target_force = -10000 # N * m
     target_force_list = np.array([target_force, 0,0,0])
     ########################## sim loop ##########################
-    from Crank_slider import CrankSlider
     # 1 : motor fixed
     # 2 : crank fixed
     # 3 : rod fixed
     # 4 : slider fixed
-    Crankslider = CrankSlider(Crank_length=2.0, rod_length=8.0, offset=0.0)
     try:
         # second: 2.0, timestep = 0.01
         steps = int(args.seconds / args.timestep) if "PYTEST_VERSION" not in os.environ else 10
@@ -254,21 +228,9 @@ def main():
         # cam.set_pose(pos = (5, 3.5, 2.5), lookat = (0, 3.5, 0))
 
         for _ in range(steps):
-            # Crankslider.calculate_positions()
-            # temp = Crankslider.get_inversion_angles_at_time(1, _, in_degrees=False)
-            # R1 = temp['crank_angle']
-            # temp = Crankslider.get_inversion_angles_at_time(1, _, in_degrees=False)
-            # R2 = temp['rod_angle']
-            # temp = Crankslider.get_inversion_angles_at_time(1, _, in_degrees=False)
-            # R3 = temp["rod_angle"]
-            # P1 = temp['slider_position']
             desired_position = [100.0, 0, 0, 0]
 
-            # desired_position = [R1, 0, 0, 0]
-            # Crank_slider_system.set_dofs_position(desired_position, dofs_idx)
-            Crank_slider_system.set_dofs_velocity(desired_position, )
-            # Crank_slider_system.control_dofs_velocity(target_force_list, dofs_idx)
-            # 일부 노이즈 발생. 
+            Crank_slider_system.set_dofs_velocity(desired_position, dofs_idx)
             # print(sensor.read())
             cam.render()
             scene.step()
@@ -277,7 +239,7 @@ def main():
         gs.logger.info("Simulation interrupted, exiting.")
     finally:
         gs.logger.info("Simulation finished.")
-        cam.stop_recording(save_to_filename ="video/SystemIntegration_20251020(1).mp4")
+        cam.stop_recording(save_to_filename ="video/SystemIntegration_20251020(2).mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":

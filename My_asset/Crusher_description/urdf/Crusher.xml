@@ -25,7 +25,9 @@
     <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="motor_1"/>
     <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="slider_jig_1"/>
     <!-- <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="slider_1"/> -->
-    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="Wall_1"/>
+    <body name ="Wall_1" pos = " 0 0 0">
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="Wall_1"/>
+    </body>
     <body name="motor_shaft_1" pos="-0.0625 0.085 0.05">
       <inertial pos="0.014137 0.00923579 0" quat="0.510125 0.489666 -0.510125 0.489666" mass="0.0393299" diaginertia="5.34022e-06 5.28299e-06 2.05723e-06"/>
       <joint name="Revolute 10" pos="0 0 0" axis="1 0 0"/>

@@ -32,3 +32,5 @@ max_corner = np.max(your_mesh.vectors, axis=(0,1))
 print("motor shaft 최소 좌표:", min_corner)
 print("motor shaft 최대 좌표:", max_corner)
     # <body name="motor_shaft_1" pos="0.11 0.05 -0.163">
+
+# Wall : postion : -60, 300, 50

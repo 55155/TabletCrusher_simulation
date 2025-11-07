@@ -163,4 +163,6 @@ cam.stop_recording(save_to_filename =  "./video/Error_20251105_2.mp4")
 
 
 # 원인 : set을 사용하면, 초기 속도는 설정이 되나, 그 이후의 제어가 안되는 문제 발생.
+# 원인 생각해보기 : control 전에 set 을 해줘야하는 건가?
+# control 은 PD 제어를 기반으로 작동할 것 같은데, PD 제어라는 것이 사실 원하는 포지션이 있다고 하면, 
 # 문제 원인 : timeconst 값이 너무 작아서, simstep 값보다 작아지게 되면 포지션 회복시에 문제가 생긴다. 
