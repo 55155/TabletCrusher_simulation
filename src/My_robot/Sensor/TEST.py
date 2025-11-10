@@ -141,7 +141,7 @@ Crank_slider_system.set_dofs_kv(
 # Crank_slider_system.control_dofs_force(force_command, dofs_idx)
 # Crank_slider_system.control_dofs_velocity(vel_command, dofs_idx)
 
-# Crank_slider_system.control_dofs_position(pos_command, dofs_idx)
+# Crank_slider_system.control_dofs_position(pos_command, dofs_idx)s
 print(Crank_slider_system.get_dofs_force())
 
 for i in range(iter):
@@ -149,7 +149,7 @@ for i in range(iter):
     # Crank_slider_system.control_dofs_velocity(force_command, dofs_idx)
     # Crank_slider_system.control_dofs_position([0,0,0], dofs_idx)
     if i >= 200:
-        Crank_slider_system.control_dofs_force(force_command, [0])
+        Crank_slider_system.set_dofs_velocity(force_command, [0])
 
     cam.set_pose(        
         pos = (10,2,5),
