@@ -36,28 +36,28 @@
       <body name="Link2_1" pos="0.0195 0.02 0">
         <inertial pos="0.005 0.047 0" quat="0.707107 0.707107 0 0" mass="0.167105" diaginertia="0.000166 0.000161 7e-06"/>
         <joint name="Revolute 12" pos="0 0 0" axis="-1 0 0"/>
-        <!-- geom initial pos : 0.043 -->
+        geom initial pos : 0.043
         <geom pos="0.043 -0.105 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link2_1"/>
-        <body name="Link3_1" pos="0 0.094 0">
+        <!-- <body name="Link3_1" pos="0 0.094 0">
           <inertial pos="-0.005 0.0112742 0" quat="0.707107 0.707107 0 0" mass="0.0450181" diaginertia="5e-06 4e-06 2e-06"/>
           <joint name="Revolute 13" pos="0 0 0" axis="-1 0 0"/>
-          <!-- modified -->
+          modified
           <geom pos="0.043 -0.199 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link2"/>
-        </body>
+        </body> -->
       </body>
     </body>
-    <body name="shaft_1" pos="-0.0475 0.2365 0.05">
+    <!-- <body name="shaft_1" pos="-0.0475 0.2365 0.05">
       <inertial pos="-0.0746639 0.00986097 0" quat="0.416653 0.416653 0.571315 0.571315" mass="0.235246" diaginertia="0.000370991 0.000365562 7.75709e-05"/>
       <joint name="Slider 21" pos="0 0 0" axis="0 -1 0" type="slide" actuatorfrcrange="-100 100"/>
       <geom pos="0.0475 -0.2365 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="shaft_1"/>
       <geom pos="0.0475 -0.2365 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Impact_plate_1"/>
-    </body>
+    </body> -->
   </worldbody>
-  <equality>
+  <!-- <equality>
     <weld body1 ="Link3_1" body2="shaft_1" solref = "0.001 1" solimp = "0.99 0.999 0.001"/>
-  </equality>
+  </equality> -->
   <actuator>
-    <motor joint="Revolute 10" ctrlrange="-10 10" gear="0.05"/>
+    <!-- <motor joint="Revolute 10" ctrlrange="-10 10" gear="0.05"/> -->
     <!-- <slide joint="Slider 21" ctrlrange="-100 100" gear="1"//> -->
   </actuator>
 </mujoco>

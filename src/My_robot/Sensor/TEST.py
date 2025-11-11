@@ -56,10 +56,16 @@ Crank_slider_system = scene.add_entity(
             "Crusher.xml",
             pos = (0.0, 0.0,0.0),
             scale = 10.0,
+            coacd_options = gs.options.CoacdOptions(
+                threshold=0.01,               # 분해 임계값(예시)
+                preprocess_resolution=100,    # 전처리 해상도(예시)
+            )
         ),
         surface=gs.surfaces.Default(
             smooth=False,
         ),
+        vis_mode = "collision",
+        
     )
 
 
@@ -78,9 +84,9 @@ scene.build()
 
 link_name = [
     "motor_shaft_1",
-    "Link2_1",
-    "Link3_1",
-    "shaft_1",
+    # "Link2_1",
+    # "Link3_1",
+    # "shaft_1",
     # "Shaft_1",
 ]
 links = [Crank_slider_system.get_link(name) for name in link_name]
@@ -102,7 +108,7 @@ jnt_names = [
 dofs_idx = [Crank_slider_system.get_joint(name).dof_idx_local for name in jnt_names]
 
 print(dofs_idx)
-solver.delete_weld_constraint(np.array(link_idx["shaft_1"][0], dtype=gs.np_int), np.array(link_idx["Link3_1"][0], dtype=gs.np_int))
+# solver.delete_weld_constraint(np.array(link_idx["shaft_1"][0], dtype=gs.np_int), np.array(link_idx["Link3_1"][0], dtype=gs.np_int))
 
 # for parallelization
 # pos_command = np.array([1000,0,0,0])
@@ -116,7 +122,8 @@ crank_velocity = 1/3* np.pi  # 1/3 pi rad/s
 vel_command = np.array([crank_velocity,0,0,0])
 
 # force command
-crank_torque = 2e+8  # N·m
+import math
+crank_torque = math.pi # N·m
 epsilon = 0
 force_command = np.array([crank_torque])
 
@@ -129,7 +136,7 @@ Crank_slider_system.set_dofs_kp(
     dofs_idx_local = dofs_idx,
 )
 Crank_slider_system.set_dofs_kv(
-    kv = np.array([1.0]),
+    kv = np.array([1000.00]),
     dofs_idx_local = dofs_idx,
 )
 Crank_slider_system.set_dofs_frictionloss([0], dofs_idx_local = dofs_idx)
@@ -150,7 +157,7 @@ for i in range(iter):
     # Crank_slider_system.control_dofs_velocity(force_command, dofs_idx)
     # Crank_slider_system.control_dofs_position([0,0,0], dofs_idx)
     if i >= 200:
-        Crank_slider_system.control_dofs_velocity(force_command, [0])
+        Crank_slider_system.set_dofs_velocity(force_command, [0])
 
     cam.set_pose(        
         pos = (10,2,5),
@@ -160,7 +167,7 @@ for i in range(iter):
     cam.render()
 
 
-cam.stop_recording(save_to_filename =  "./video/Error_20251111_2.mp4")
+# cam.stop_recording(save_to_filename =  "./video/Error_20251111_6.mp4")
 
 
 # 원인 : set을 사용하면, 초기 속도는 설정이 되나, 그 이후의 제어가 안되는 문제 발생.

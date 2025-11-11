@@ -2,9 +2,9 @@ import numpy as np
 import genesis as gs
 import yaml
 
-with open('genesis_simulation_on_linux/src/config.yaml', 'r') as file:
-    config = yaml.load(file, Loader=yaml.FullLoader)
-print(config)
+# with open('genesis_simulation_on_linux/src/config.yaml', 'r') as file:
+#     config = yaml.load(file, Loader=yaml.FullLoader)
+# print(config)
 
 
 ########################## init ##########################
@@ -51,7 +51,7 @@ cam = scene.add_camera(
     GUI=True,
 )
 
-scene.build(n_envs=100)  # build the scene with a single environment
+scene.build()  # build the scene with a single environment
 cam.start_recording()
 
 # Retrieve some commonly used handles
@@ -98,6 +98,7 @@ cam.start_recording()
 
 franka.control_dofs_position(q_place[:-2], np.arange(7))
 for _ in range(100):
+    print(franka.get_dofs_force())
     cam.render()
     scene.step()
 
