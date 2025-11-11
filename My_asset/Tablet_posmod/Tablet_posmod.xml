@@ -24,7 +24,7 @@
 
     </asset>
     <worldbody>
-        <body name="Tablet">
+        <body name="tablet">
             <!-- <freejoint/> -->
             <!-- <geom rgba="0.650 0.350 0.350 1" type="mesh" mesh="Tablet_posmod"/> -->
             <geom rgba="0.675 0.465 0.325 1" type="mesh" mesh="Tablet_posmod_collision_(1)"/>
@@ -46,13 +46,15 @@
             <geom rgba="0.700 0.620 0.300 1" type="mesh" mesh="Tablet_posmod_collision_(7)"/>
             <geom rgba="0.635 0.725 0.275 1" type="mesh" mesh="Tablet_posmod_collision_(8)"/>
             <geom rgba="0.450 0.750 0.250 1" type="mesh" mesh="Tablet_posmod_collision_(9)"/>
-        </body>
-        <body name = "segment">
-            <!-- <freejoint/> -->
             <geom rgba="0.415 0.075 0.925 1" type="mesh" mesh="Tablet_posmod_collision_(19)"/>
+            <geom rgba="0.415 0.075 0.925 1" type="mesh" mesh="Tablet_posmod_collision_(19)"/>
+            <geom rgba="0.415 0.075 0.925 1" type="mesh" mesh="Tablet_posmod_collision_(19)"/>
+
         </body>
+
+        <!-- <freejoint/> -->
     </worldbody>
-    <equality>
+    <!-- <equality>
         <weld body1="Tablet" body2="segment" anchor = "0 0 0"/>
-    </equality>
+    </equality> -->
 </mujoco>

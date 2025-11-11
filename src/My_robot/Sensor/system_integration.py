@@ -27,7 +27,7 @@ def main():
     args = parser.parse_args()
 
     ########################## init ##########################
-    gs.init(backend=gs.metal)
+    gs.init(backend=gs.cuda)
     # gs.init(backend=gs.cpu if args.cpu else gs.gpu, logging_level=None)
 
     ########################## scene setup ##########################
@@ -70,7 +70,7 @@ def main():
             file = "./My_asset/Crusher_description/urdf/" \
             "Crusher.xml",
             pos = (0, 0.0, 0),
-            scale = 10.0,
+            scale = 1.0,
         ),
         surface=gs.surfaces.Default(
             smooth=False,
@@ -109,8 +109,8 @@ def main():
             # Wall : postion : -60, 300, 50
             # motor shaft 최소 좌표: [-120.  340.   10.]
             # motor shaft 최대 좌표: [  0. 400.  90.]
-            pos = (-0.5, 3.2, .5),
-            scale = 20.0,
+            pos = (-0.05, 0.32, .005),
+            scale = 2.0,
         )
     )
 
