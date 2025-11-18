@@ -1,0 +1,20 @@
+<mujoco model="TEST">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="base_link" content_type="model/stl" file="base_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link_1" content_type="model/stl" file="link_1.stl" scale="0.001 0.001 0.001"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="base_link"/>
+    <body name="link_1" pos="0 0.005 0.01">
+      <inertial pos="-0.005 0.0254159 0" quat="0.707107 0.707107 0 0" mass="0.0926587" diaginertia="3e-05 2.8e-05 4e-06"/>
+      <joint name="Revolute 1" pos="0 0 0" axis="1 0 0"/>
+      <geom pos="0 -0.005 -0.01" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="link_1"/>
+    </body>
+  </worldbody>
+  <actuator>
+    <!-- <motor joint="Revolute 1" ctrlrange="-10 10" gear="1"/> -->
+  </actuator>
+</mujoco>

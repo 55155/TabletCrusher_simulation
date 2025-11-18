@@ -1,3 +1,5 @@
+import os
+
 import genesis as gs
 import yaml
 import numpy as np
@@ -5,12 +7,18 @@ import numpy as np
 # with open('/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/src/config.yaml', 'r') as file:
 #     config = yaml.load(file, Loader=yaml.Loader)
 
-gs.init(backend=gs.gpu)
+ENABLE_SELF_COLLISION = bool(int(os.getenv("GENESIS_ENABLE_SELF_COLLISION", "0")))
+
+if ENABLE_SELF_COLLISION:
+    print("Self-collision enabled: simulation may become unstable.")
+
+gs.init(backend=gs.cuda)
 
 scene = gs.Scene(
     show_viewer=True,
     sim_options= gs.options.SimOptions(
         dt = 0.0005,
+        # substeps = 10,
         gravity=(0.0, 0.0, -9.81),
     ),
     viewer_options=gs.options.ViewerOptions(
@@ -19,6 +27,10 @@ scene = gs.Scene(
         camera_lookat=(0.0, 0.0, 0.5),
         camera_fov=40,
         max_FPS=30,
+    ),
+    rigid_options=gs.options.RigidOptions(
+        # requires_grad=True,
+        enable_self_collision=False,
     ),
     vis_options=gs.options.VisOptions(
         show_world_frame=True,
@@ -65,12 +77,13 @@ Crank_slider_system = scene.add_entity(
             smooth=False,
         ),
         vis_mode = "collision",
-        
+        visualize_contact=True,
     )
 
 
 
-## scene에 모든 엔티티 추가 후에 build
+## scene에 모든 엔티티 추가 후에 build      <geom pos="0.0625 -0.085 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="motor_shaft_1"/>
+
 cam = scene.add_camera(
     res=(1280, 960),
     pos=(2.0 * np.sin(1 / 60), 2.0 * np.cos(np.pi), 1),
@@ -167,7 +180,7 @@ for i in range(iter):
     cam.render()
 
 
-# cam.stop_recording(save_to_filename =  "./video/Error_20251111_6.mp4")
+cam.stop_recording(save_to_filename =  "./video/20251114_scale1.0_self_collision.mp4")
 
 
 # 원인 : set을 사용하면, 초기 속도는 설정이 되나, 그 이후의 제어가 안되는 문제 발생.

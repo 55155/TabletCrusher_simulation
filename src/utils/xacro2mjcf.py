@@ -45,7 +45,7 @@ if __name__ == "__main__":
         config = yaml.safe_load(file)
 
     asset_path = config["file_path"]["asset"]
-    Robot_name = "Crusher"
+    Robot_name = "TEST"  # 여기에 로봇 이름을 입력하세요.
     file_path = asset_path + Robot_name + "_description" + "/urdf/"
     xacro_file = file_path + Robot_name + ".xacro"
     urdf_file = file_path + Robot_name + ".urdf"
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         # urdf -> mjcf 변환
 
         # mjcf stl 위치 수정
-        os.system(f"cd {file_path} && cp ../col_meshes/* {file_path}")
+        # os.system(f"cd {file_path} && cp ../col_meshes/* {file_path}")
 
         model = mujoco.MjModel.from_xml_path(output_urdf_path)
         mujoco.mj_saveLastXML(file_path + Robot_name + ".xml", model)

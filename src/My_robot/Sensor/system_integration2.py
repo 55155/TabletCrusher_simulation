@@ -40,6 +40,7 @@ def main():
             # constraint_timeconst -> weld 판단 
             # constraint_timeconst=max(0.01, 2 * args.timestep),
             use_gjk_collision=True,
+            # enable_collision=False,
         ),
         vis_options=gs.options.VisOptions(
             show_world_frame=True,
@@ -225,11 +226,15 @@ def main():
         steps = int(args.seconds / args.timestep) if "PYTEST_VERSION" not in os.environ else 10
         print("steps : ", steps)
         # cam.set_pose(pos = (5, 3.5, 2.5), lookat = (0, 3.5, 0))
-
+        desired_velocity_list = [100.0]                
+        Crank_slider_system.set_dofs_velocity(desired_velocity_list, [0])
         for _ in range(steps):
-            desired_velocity_list = [100.0, 0, 0, 0]                
-            Crank_slider_system.set_dofs_velocity(desired_velocity_list, dofs_idx)
             # print(sensor.read())
+            print(Crank_slider_system.get_dofs_force())
+            cam.set_pose(
+                lookat = (-0.5, 3.4, .5),
+                pos=(1, 3.4, .5),
+            )
             cam.render()
             scene.step()
 
@@ -237,7 +242,7 @@ def main():
         gs.logger.info("Simulation interrupted, exiting.")
     finally:
         gs.logger.info("Simulation finished.")
-        cam.stop_recording(save_to_filename ="video/SystemIntegration_20251111(1).mp4")
+        cam.stop_recording(save_to_filename ="video/SystemIntegration_20251117(1).mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
@@ -246,7 +251,7 @@ if __name__ == "__main__":
 
 # Wall 의 시뮬레이션 상 좌표 : 0.353 0.01 -0.22 .. ?
 # Wall_position :  tensor
-#       ([[ 0.0000,  0.0000,  0.0000],
+#       ([[ 0.0000,  0.0000,  0.0000]
 #         [-0.1630,  0.1100,  0.0500],
 #         [-0.1485,  0.2555,  0.0500],
 #         [ 0.0000,  0.0000,  0.0000],
