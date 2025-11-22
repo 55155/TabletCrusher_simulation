@@ -74,7 +74,9 @@ def main():
         ),
         surface=gs.surfaces.Default(
             smooth=False,
-        ),
+        ), 
+        visualize_contact=True,
+
     )
 
     link_name = [
@@ -228,8 +230,7 @@ def main():
         # cam.set_pose(pos = (5, 3.5, 2.5), lookat = (0, 3.5, 0))
 
         for _ in range(steps):
-            desired_position = [100.0, 0, 0, 0]
-
+            desired_position = [100.0, 0, 0, 0]                
             Crank_slider_system.set_dofs_velocity(desired_position, dofs_idx)
             # print(sensor.read())
             cam.render()
