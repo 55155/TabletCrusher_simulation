@@ -47,6 +47,7 @@ def main():
         ),
         viewer_options=gs.options.ViewerOptions(
             max_FPS=20,
+            res=(960, 1080),
         ),
         profiling_options=gs.options.ProfilingOptions(
             show_FPS=True,
@@ -149,6 +150,7 @@ def main():
             plot_kwargs = dict(
                 title=f"{link_name} Contact Sensor Data",
                 labels=["in_contact"],
+                window_size=(960, 1080),
             )
 
     sensor = scene.add_sensor(sensor_options)
