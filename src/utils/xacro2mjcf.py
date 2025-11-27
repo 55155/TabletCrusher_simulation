@@ -45,7 +45,7 @@ if __name__ == "__main__":
         config = yaml.safe_load(file)
 
     asset_path = config["file_path"]["asset"]
-    Robot_name = "TEST"  # 여기에 로봇 이름을 입력하세요.
+    Robot_name = "SAMPLEBAG"  # 여기에 로봇 이름을 입력하세요.
     file_path = asset_path + Robot_name + "_description" + "/urdf/"
     xacro_file = file_path + Robot_name + ".xacro"
     urdf_file = file_path + Robot_name + ".urdf"
@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     if not os.path.exists(file_path + Robot_name + ".xml"):
         # urdf -> mjcf 변환
-
+ 
         # mjcf stl 위치 수정
         # os.system(f"cd {file_path} && cp ../col_meshes/* {file_path}")
 

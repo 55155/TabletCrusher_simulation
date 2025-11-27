@@ -33,6 +33,13 @@ def main():
         ),
         show_viewer=args.vis,
     )
+    cam = scene.add_camera(
+        res=(1280, 960),
+        pos = (2,-2,2),
+        lookat=(0.65, 0.0, 0.036),
+        fov=30,
+        GUI=True,
+    )
 
     ########################## entities ##########################
     plane = scene.add_entity(
@@ -86,7 +93,7 @@ def main():
             plot_kwargs = dict(
                 title=f"{link_name} Force Sensor Data",
                 labels=["force_x", "force_y", "force_z"],
-                window_size=(1080, 960),
+                window_size=(1000, 900),
             )
         else:
             sensor_options = gs.sensors.Contact(
@@ -108,10 +115,30 @@ def main():
             sensor.start_recording(gs.recorders.MPLLinePlot(**plot_kwargs))
         else:
             print("matplotlib or pyqtgraph not found, skipping real-time plotting.")
+    
+    fingers = [
+        "left_finger",
+        "right_finger",
+    ]
+
+    for finger in fingers: 
+        sensor_options = gs.sensors.ContactForce(
+            entity_idx=franka.idx,
+            link_idx_local=franka.get_link(finger).idx_local,
+            draw_debug=True,
+        )
+        plot_kwargs = dict(
+            title=f"{finger} Force Sensor Data",
+            labels=["force_x", "force_y", "force_z"],
+            window_size=(1000, 900),
+    )
+    sensor = scene.add_sensor(sensor_options)
+    sensor.start_recording(gs.recorders.PyQtLinePlot(**plot_kwargs))
 
 
     ########################## build ##########################
     scene.build(n_envs=args.n_envs, env_spacing=(1, 1))
+    cam.start_recording()
 
     motors_dof = np.arange(7)
     fingers_dof = np.arange(7, 9)
@@ -146,8 +173,10 @@ def main():
     for waypoint in path:
         franka.control_dofs_position(waypoint)
         scene.step()
+        cam.render()
     for i in range(30):
         scene.step()
+        cam.render()
 
     # reach
     qpos = franka.inverse_kinematics(
@@ -158,6 +187,7 @@ def main():
     franka.control_dofs_position(qpos[..., :-2], motors_dof)
     for i in range(100):
         scene.step()
+        cam.render()
 
     # grasp
     franka.control_dofs_position(qpos[..., :-2], motors_dof)
@@ -166,6 +196,7 @@ def main():
     )  # you can use position control
     for i in range(100):
         scene.step()
+        cam.render()
 
     # lift
     qpos = franka.inverse_kinematics(
@@ -180,7 +211,16 @@ def main():
     for i in range(1000):
         pre_force = franka.get_dofs_force(fingers_dof)
         print("finger force: ", pre_force)
+        cam.set_pose(
+            pos = (1.15, -0.5, 0.3),
+            lookat=(0.65, 0.0, 0.3),
+        )
         scene.step()
+        cam.render()
+
+    cam.stop_recording(save_to_filename ="video/grasp_bottle2.mp4")
+
+    
 
 
 if __name__ == "__main__":

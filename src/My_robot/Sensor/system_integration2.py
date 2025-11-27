@@ -245,7 +245,7 @@ def main():
         gs.logger.info("Simulation interrupted, exiting.")
     finally:
         gs.logger.info("Simulation finished.")
-        cam.stop_recording(save_to_filename ="video/SystemIntegration_20251117(2).mp4")
+        cam.stop_recording(save_to_filename ="video/SystemIntegration_20251124(1).mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
