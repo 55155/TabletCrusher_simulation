@@ -189,12 +189,12 @@ def main():
     ############################### hard reset ##########################
     ######################## control dofs ########################
     Crank_slider_system.set_dofs_kp(
-    kp = np.array([1,1,1,1]),
-    dofs_idx_local = dofs_idx,
+    kp = np.array([1000,]),
+    dofs_idx_local = [0],
     )
     Crank_slider_system.set_dofs_kv(
-        kv = np.array([1,1,1,1]),
-        dofs_idx_local = dofs_idx,
+        kv = np.array([1000,]),
+        dofs_idx_local = [0],
     )
 
     # set_dof_position 
@@ -204,7 +204,7 @@ def main():
     # Crank_slider initial position 설정
     flag = True
     # Crank_slider_system.set_dofs_position(desired_position_list, dofs_idx)
-    for i in range(200):
+    for i in range(200):    
         if flag:
             print("Crank-slider Initial Pos : ", Crank_slider_system.get_dofs_position(dofs_idx))
             flag = False
@@ -229,10 +229,10 @@ def main():
         steps = int(args.seconds / args.timestep) if "PYTEST_VERSION" not in os.environ else 10
         print("steps : ", steps)
         # cam.set_pose(pos = (5, 3.5, 2.5), lookat = (0, 3.5, 0))
-        desired_velocity_list = [100.0]                
-        Crank_slider_system.set_dofs_velocity(desired_velocity_list, [0])
+        desired_velocity_list = [1000.0]                
         for _ in range(steps):
             # print(sensor.read())
+            Crank_slider_system.control_dofs_force(desired_velocity_list, [0])
             print(Crank_slider_system.get_dofs_force())
             cam.set_pose(
                 lookat = (-0.5, 3.4, .5),
@@ -245,7 +245,7 @@ def main():
         gs.logger.info("Simulation interrupted, exiting.")
     finally:
         gs.logger.info("Simulation finished.")
-        cam.stop_recording(save_to_filename ="video/SystemIntegration_20251124(1).mp4")
+        cam.stop_recording(save_to_filename ="video/SystemIntegration_20251202(1).mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
