@@ -18,7 +18,7 @@ def main():
 
     args = parser.parse_args()
 
-    ########################## init ##########################
+    ##############g############ init ##########################
     gs.init(backend=gs.cpu if args.cpu else gs.gpu, logging_level=None)
 
     ########################## scene setup ##########################

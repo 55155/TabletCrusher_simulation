@@ -54,7 +54,7 @@ Crank_slider_system = scene.add_entity(
         surface=gs.surfaces.Default(
             smooth=False,
         ),
-        # vis_mode="collision",
+        vis_mode="collision",
         visualize_contact=True,
     )
 

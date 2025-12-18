@@ -1,4 +1,4 @@
-import pylife.strength.sn_curve
+import pylife.materiallaws.woehlercurve
 
 def tablet_hardness(hardness, diameter, thickness):
     """
@@ -29,5 +29,5 @@ def tablet_hardness(hardness, diameter, thickness):
 
 # not convex 
 Tablet_tensile_strength = tablet_hardness(hardness=360, diameter=10, thickness=5)
-Tablet_Fatigue_life = pylife.strength.sn_curve.FiniteLifeBase(-.1, .4*Tablet_tensile_strength, 1e3)
+Tablet_Fatigue_life =  pylife.materiallaws.woehlercurve(-.1, .4*Tablet_tensile_strength, 1e3)
 print(Tablet_Fatigue_life)
