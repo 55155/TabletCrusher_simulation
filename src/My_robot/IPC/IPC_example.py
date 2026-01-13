@@ -22,7 +22,7 @@ def main():
     parser.add_argument("--vis_ipc", action="store_true", default=True)
     args = parser.parse_args()
 
-    dt = 2e-2
+    dt = 2e-3
     scene = gs.Scene(
         sim_options=gs.options.SimOptions(dt=dt, gravity=(0.0, 0.0, -9.8)),
         coupler_options=gs.options.IPCCouplerOptions(
@@ -81,8 +81,8 @@ def main():
         surface=gs.surfaces.Plastic(color=(0.8, 0.3, 0.2, 0.8)),
     )
     camera = scene.add_camera(
-        pos=(-2.0, 2.0, 3.0),
-        lookat=(0.0, 0.0, 1.5),
+        pos=(-4.0, 4.0, 4.0),
+        lookat=(0.0, 0.0, 0.5),
     )
 
     # # Optional: Add another FEM volume object
@@ -105,7 +105,7 @@ def main():
         scene.step()
         if i % 100 == 0:
             print(f"  Step {i}/{horizon}")
-    camera.stop_recording(output_path="./video/ipc_solver_test/ipc_cloth_simulation.mp4")
+    camera.stop_recording(save_to_filename="./video/ipc_solver_test/ipc_cloth_simulation.mp4", fps=60)
 
 if __name__ == "__main__":
     main()
