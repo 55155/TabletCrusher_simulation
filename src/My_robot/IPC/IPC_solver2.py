@@ -76,11 +76,11 @@ ball = scene.add_entity(
 scene.build()
 cam.start_recording()
 
-horizon = 5000
+horizon = 500
 for i in range(horizon):
     print(f"Step {i+1}/{horizon}")
     scene.step()
     print("Scene stepped.")
     cam.render()
 
-cam.stop_recording(save_to_filename="./video/ipc_solver_samplebag/[20260114] Samplebag(PBD)-tablet(Rigid) 3.mp4")
+cam.stop_recording(save_to_filename="./video/ipc_solver_samplebag/[20260115] Samplebag(PBD)-tablet(Rigid).mp4")
