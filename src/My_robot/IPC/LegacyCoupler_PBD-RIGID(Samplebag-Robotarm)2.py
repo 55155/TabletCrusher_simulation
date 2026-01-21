@@ -208,6 +208,10 @@ franka.control_dofs_position(
     np.array([0, 0]) if args.n_envs == 0 else np.array([[0, 0]] * args.n_envs), fingers_dof
 )  # you can use position control
 for i in range(100):
+    cam.set_pose(
+        pos = (0.1, 1,0.3),
+        lookat=(0.1, 0.1, 0.0),
+    )
     scene.step()
     cam.render()
 
@@ -234,4 +238,4 @@ for i in range(horizon):
     scene.step()
     print("Scene stepped.")
     cam.render()
-cam.stop_recording(save_to_filename="./video/ipc_solver_samplebag/[20260122] LagacyCoupler_Samplebag-Robotarm interaction 5.mp4")
+cam.stop_recording(save_to_filename="./video/ipc_solver_samplebag/[20260122] LagacyCoupler_Samplebag-Robotarm interaction 6.mp4")
