@@ -49,7 +49,7 @@ Crank_slider_system = scene.add_entity(
         gs.morphs.MJCF(
             file = "/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crusher_description/urdf/Crusher.xml",
             pos = (0.0, 0.0,0.0),
-            scale = 10.0,
+            scale = 1.0,
         ),
         surface=gs.surfaces.Default(
             smooth=False,
@@ -106,7 +106,7 @@ crank_velocity = 1/3* np.pi  # 1/3 pi rad/s
 vel_command = np.array([crank_velocity,0,0])
 
 # force command
-crank_torque = 10.0  # N·m
+crank_torque = 100.0  # N·m
 epsilon = 1e-6
 force_command = np.array([crank_torque])
 
@@ -131,10 +131,10 @@ cam.set_pose(
 # Crank_slider_system.control_dofs_force(force_command, dofs_idx)
 
 # print(Crank_slider_system.get_dofs_force())
-Crank_slider_system.set_dofs_velocity(force_command, [0])
 
 for i in range(iter):
     scene.step()
+    Crank_slider_system.control_dofs_force(force_command, [0])
 
     # Crank_slider_system.control_dofs_position([0,0,0], dofs_idx)
 

@@ -3,13 +3,13 @@ import os
 import numpy as np  
 from tqdm import tqdm
 
-import roma
+# import roma
 import torch
 import math as m
 
-# 오일러 각을 회전 행렬로 변환
-euler_angles = [90, 0, 90]  # degrees
-R = roma.euler_to_rotmat('XYZ', euler_angles, degrees=True)
+# # 오일러 각을 회전 행렬로 변환
+# euler_angles = [90, 0, 90]  # degrees
+# R = roma.euler_to_rotmat('XYZ', euler_angles, degrees=True)
 
 import genesis as gs
 from genesis.recorders.plotters import IS_MATPLOTLIB_AVAILABLE, IS_PYQTGRAPH_AVAILABLE
@@ -35,6 +35,7 @@ def main():
         sim_options=gs.options.SimOptions(
             gravity=(0.0, 0.0, -9.81),
             dt=args.timestep,
+            substeps=10,
         ),
         rigid_options=gs.options.RigidOptions(
             # constraint_timeconst -> weld 판단 
@@ -99,9 +100,9 @@ def main():
     # Crank-slider system Joint index
     jnt_names = [
         "Revolute 10",
-        "Revolute 12",
-        "Revolute 13",
-        "Slider 21"
+        # "Revolute 12",
+        # "Revolute 13",
+        # "Slider 21"
     ]
     dofs_idx = [Crank_slider_system.get_joint(name).dof_idx_local for name in jnt_names] 
 
@@ -189,17 +190,17 @@ def main():
     ############################### hard reset ##########################
     ######################## control dofs ########################
     Crank_slider_system.set_dofs_kp(
-    kp = np.array([1000,]),
+    kp = np.array([0.1,]),
     dofs_idx_local = [0],
     )
     Crank_slider_system.set_dofs_kv(
-        kv = np.array([1000,]),
+        kv = np.array([.1,]),
         dofs_idx_local = [0],
     )
 
     # set_dof_position 
-    desired_position = m.pi / 2 
-    desired_position_list = [desired_position if i == 0 else 0.0 for i in range(len(dofs_idx))]
+    desired_velocity = -m.pi / 2 
+    desired_position_list = [desired_velocity if i == 0 else 0.0 for i in range(len(dofs_idx))]
 
     # Crank_slider initial position 설정
     flag = True
@@ -208,7 +209,7 @@ def main():
         if flag:
             print("Crank-slider Initial Pos : ", Crank_slider_system.get_dofs_position(dofs_idx))
             flag = False
-        # Crank_slider_system.set_dofs_position([desired_position], [0])
+        Crank_slider_system.control_dofs_position(desired_position_list, [0])
         cam.render()
         scene.step()
 
@@ -229,10 +230,10 @@ def main():
         steps = int(args.seconds / args.timestep) if "PYTEST_VERSION" not in os.environ else 10
         print("steps : ", steps)
         # cam.set_pose(pos = (5, 3.5, 2.5), lookat = (0, 3.5, 0))
-        desired_velocity_list = [1000.0]                
+        desired_force_list = [100.0]                
         for _ in range(steps):
             # print(sensor.read())
-            Crank_slider_system.control_dofs_force(desired_velocity_list, [0])
+            Crank_slider_system.control_dofs_force(desired_force_list, [0])
             print(Crank_slider_system.get_dofs_force())
             cam.set_pose(
                 lookat = (-0.5, 3.4, .5),
@@ -245,7 +246,7 @@ def main():
         gs.logger.info("Simulation interrupted, exiting.")
     finally:
         gs.logger.info("Simulation finished.")
-        cam.stop_recording(save_to_filename ="video/SystemIntegration_20251202(1).mp4")
+        cam.stop_recording(save_to_filename ="video/[20260126]SystemIntegration.mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
@@ -287,3 +288,8 @@ if __name__ == "__main__":
 # 2025.10.16 수정사항
 # weld 불안정성 높음, 따라서 dofs position constrol 로 어느정도 해결해야할듯
 # Cranks-slider mechanism passive dofs position 계산 -> CrankSliderMechanism class 생성  
+
+
+# 2026.01.26 수정사항
+# 시스템 통합 2차 시도
+# https://github.com/Genesis-Embodied-AI/Genesis/issues/1993
