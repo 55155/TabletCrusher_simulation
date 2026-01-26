@@ -230,7 +230,7 @@ def main():
         steps = int(args.seconds / args.timestep) if "PYTEST_VERSION" not in os.environ else 10
         print("steps : ", steps)
         # cam.set_pose(pos = (5, 3.5, 2.5), lookat = (0, 3.5, 0))
-        desired_force_list = [100.0]                
+        desired_force_list = [10.0]                
         for _ in range(steps):
             # print(sensor.read())
             Crank_slider_system.control_dofs_force(desired_force_list, [0])
@@ -246,7 +246,7 @@ def main():
         gs.logger.info("Simulation interrupted, exiting.")
     finally:
         gs.logger.info("Simulation finished.")
-        cam.stop_recording(save_to_filename ="video/[20260126]SystemIntegration.mp4")
+        cam.stop_recording(save_to_filename ="video/[20260126]SystemIntegration (2).mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
@@ -293,3 +293,4 @@ if __name__ == "__main__":
 # 2026.01.26 수정사항
 # 시스템 통합 2차 시도
 # https://github.com/Genesis-Embodied-AI/Genesis/issues/1993
+# 여전히
