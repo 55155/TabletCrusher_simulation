@@ -6,7 +6,6 @@ from tqdm import tqdm
 # import roma
 import torch
 import math as m
-import CSV_reader # CSV 로깅 유틸리티
 
 # # 오일러 각을 회전 행렬로 변환
 # euler_angles = [90, 0, 90]  # degrees
@@ -14,7 +13,7 @@ import CSV_reader # CSV 로깅 유틸리티
 
 import genesis as gs
 from genesis.recorders.plotters import IS_MATPLOTLIB_AVAILABLE, IS_PYQTGRAPH_AVAILABLE
-
+from pathlib import Path
 
 # CSV 파일 경로
 ROBOT_FORCE_PATH = Path("robot_actuation_forces.csv")
@@ -260,7 +259,12 @@ def main():
         cam.render()
         scene.step()
 
+    import CSV_reader # CSV 로깅 유틸리티
+
     try:
+        robot_f, robot_writer = CSV_reader.init_robot_csv()
+        sensor_f, sensor_writer = CSV_reader.init_sensor_csv()
+
         # second: 2.0, timestep = 0.01
         steps = int(args.seconds / args.timestep) if "PYTEST_VERSION" not in os.environ else 10
         print("steps : ", steps)
@@ -268,9 +272,19 @@ def main():
         desired_force_list = [10.0]
         box.set_pos(pos = box_initial_pos)                
         for _ in range(steps):
-            # print(sensor.read())
+            # 1. 제어 및 robot forces 저장
             Crank_slider_system.control_dofs_force(desired_force_list, [0])
-            print(Crank_slider_system.get_dofs_force())
+            robot_forces = Crank_slider_system.get_dofs_force().cpu().numpy()
+            CSV_reader.log_robot_forces(robot_writer, _, robot_forces)
+
+            # 2. Sensor force 저장
+            sensor_force = sensor.read().cpu().numpy()  # shape: (3,) 예상
+            CSV_reader.log_sensor_force(sensor_writer, _, sensor_force)
+ 
+            # 3. 디버깅 출력 (선택적)
+            print(f"Step {_}: Robot forces={robot_forces.tolist()}, "
+                f"Sensor force={sensor_force.tolist()}, magnitude={np.linalg.norm(sensor_force):.2f}")
+
             cam.set_pose(
                 lookat = (-0.5, 3.4, .5),
                 pos=(1, 3.4, .5),
@@ -281,8 +295,12 @@ def main():
     except KeyboardInterrupt:
         gs.logger.info("Simulation interrupted, exiting.")
     finally:
+        robot_f.close()
+        sensor_f.close()
         gs.logger.info("Simulation finished.")
-        cam.stop_recording(save_to_filename ="video/[20260127]SystemIntegration (2).mp4")
+        gs.logger.info(f"  - Robot forces: {ROBOT_FORCE_PATH}")
+        gs.logger.info(f"  - Sensor forces: {SENSOR_FORCE_PATH}")
+        cam.stop_recording(save_to_filename ="video/[20260130]SystemIntegration (1).mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
