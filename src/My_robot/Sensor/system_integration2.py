@@ -21,7 +21,7 @@ SENSOR_FORCE_PATH = Path("sensor_contact_forces.csv")
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-dt", "--timestep", type=float, default=0.0005, help="Simulation time step")
+    parser.add_argument("-dt", "--timestep", type=float, default=0.01, help="Simulation time step")
     parser.add_argument("-v", "--vis", action="store_true", default=True, help="Show visualization GUI")
     parser.add_argument("-nv", "--no-vis", action="store_false", dest="vis", help="Disable visualization GUI")
     parser.add_argument("-c", "--cpu", action="store_true", help="Use CPU instead of GPU")
@@ -78,7 +78,7 @@ def main():
             file = "./My_asset/Crusher_description/urdf/" \
             "Crusher.xml",
             pos = (0, 0.0, 0),
-            scale = 10.0,
+            scale = 5.0,
         ),
         surface=gs.surfaces.Default(
             smooth=False,
@@ -127,7 +127,8 @@ def main():
     ## Test 용 box ( Talbet 대체 )
     box = scene.add_entity(
         gs.morphs.Box(
-            pos = (-0.5, 3.2, 10.0),
+            pos = (0, 1.1825, 0),
+            # pos = (-0.5, 3.2, 10.0),
             size = (0.1, 0.1, 0.1),
             fixed = True,
         )
@@ -300,7 +301,7 @@ def main():
         gs.logger.info("Simulation finished.")
         gs.logger.info(f"  - Robot forces: {ROBOT_FORCE_PATH}")
         gs.logger.info(f"  - Sensor forces: {SENSOR_FORCE_PATH}")
-        cam.stop_recording(save_to_filename ="video/[20260130]SystemIntegration (1).mp4")
+        cam.stop_recording(save_to_filename ="video/[20260209]SystemIntegration scale_5.0 (1).mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
