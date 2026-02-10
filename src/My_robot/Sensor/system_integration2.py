@@ -21,7 +21,7 @@ SENSOR_FORCE_PATH = Path("sensor_contact_forces.csv")
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-dt", "--timestep", type=float, default=0.01, help="Simulation time step")
+    parser.add_argument("-dt", "--timestep", type=float, default=0.001, help="Simulation time step")
     parser.add_argument("-v", "--vis", action="store_true", default=True, help="Show visualization GUI")
     parser.add_argument("-nv", "--no-vis", action="store_false", dest="vis", help="Disable visualization GUI")
     parser.add_argument("-c", "--cpu", action="store_true", help="Use CPU instead of GPU")
@@ -71,7 +71,6 @@ def main():
 
     # rigid solver : for add_constaraints
     solver = scene.sim.rigid_solver
-
     # Crank-slider system
     Crank_slider_system = scene.add_entity(
         gs.morphs.MJCF(
@@ -116,6 +115,7 @@ def main():
         gs.morphs.MJCF(
             file = "My_asset/Tablet_posmod/Tablet_posmod.xml",
             euler = (90,0,0),
+            # scale = 10.0일 때의 기준
             # Wall : postion : -60, 300, 50
             # motor shaft 최소 좌표: [-120.  340.   10.]
             # motor shaft 최대 좌표: [  0. 400.  90.]
@@ -127,9 +127,9 @@ def main():
     ## Test 용 box ( Talbet 대체 )
     box = scene.add_entity(
         gs.morphs.Box(
-            pos = (0, 1.1825, 0),
+            pos = (-.15, 1.65, 10.0),
             # pos = (-0.5, 3.2, 10.0),
-            size = (0.1, 0.1, 0.1),
+            size = (0.05, 0.02, 0.05),
             fixed = True,
         )
     )
@@ -249,7 +249,7 @@ def main():
 
     # box initial position 설정
     box_initial_pos = box.get_pos().tolist()
-    box_initial_pos[-1] -= 9.5
+    box_initial_pos[-1] -= 9.8
     box.set_pos(pos = box_initial_pos)
     flag = True
     for i in range(200):
@@ -301,7 +301,7 @@ def main():
         gs.logger.info("Simulation finished.")
         gs.logger.info(f"  - Robot forces: {ROBOT_FORCE_PATH}")
         gs.logger.info(f"  - Sensor forces: {SENSOR_FORCE_PATH}")
-        cam.stop_recording(save_to_filename ="video/[20260209]SystemIntegration scale_5.0 (1).mp4")
+        cam.stop_recording(save_to_filename ="video/[20260210]SystemIntegration scale_5.0 (1).mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":

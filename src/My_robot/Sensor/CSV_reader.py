@@ -33,6 +33,7 @@ def log_sensor_force(writer, t, sensor_force):
     fx, fy, fz = sensor_force  # [x, y, z]
     magnitude = np.linalg.norm(sensor_force)
     writer.writerow([t, fx, fy, fz, magnitude])
+    
 if __name__ == "__main__":
     import sys
     import pandas as pd
