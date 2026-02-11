@@ -5,6 +5,7 @@ import numpy as np
 # CSV 파일 경로
 ROBOT_FORCE_PATH = Path("robot_actuation_forces.csv")
 SENSOR_FORCE_PATH = Path("sensor_contact_forces.csv")
+ROBOT_VELOCITY_PATH = Path("robot_joint_velocities.csv")
 
 def init_robot_csv(path=ROBOT_FORCE_PATH):
     """로봇 4개 joint actuation force용 CSV 초기화"""
@@ -13,6 +14,15 @@ def init_robot_csv(path=ROBOT_FORCE_PATH):
     writer = csv.writer(f)
     if is_new:
         writer.writerow(["time", "joint0_force", "joint1_force", "joint2_force", "joint3_force"])
+    return f, writer
+
+def init_robot_velocity_csv(path=ROBOT_VELOCITY_PATH):
+    """로봇 4개 joint actuation velocity용 CSV 초기화"""
+    is_new = not path.exists()
+    f = open(path, mode="a", newline="", encoding="utf-8")
+    writer = csv.writer(f)
+    if is_new:
+        writer.writerow(["time", "joint0_velocity", "joint1_velocity", "joint2_velocity", "joint3_velocity"])
     return f, writer
 
 def init_sensor_csv(path=SENSOR_FORCE_PATH):
@@ -27,6 +37,10 @@ def init_sensor_csv(path=SENSOR_FORCE_PATH):
 def log_robot_forces(writer, t, forces):
     """로봇 4개 joint force 로깅"""
     writer.writerow([t] + forces.tolist())
+
+def log_robot_velocities(writer, t, velocities):
+    """로봇 4개 joint velocity 로깅"""
+    writer.writerow([t] + velocities.tolist())
 
 def log_sensor_force(writer, t, sensor_force):
     """sensor 3D force 로깅 (magnitude도 추가)"""

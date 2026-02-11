@@ -17,6 +17,7 @@ from pathlib import Path
 
 # CSV 파일 경로
 ROBOT_FORCE_PATH = Path("robot_actuation_forces.csv")
+ROBOT_VELOCITY_PATH = Path("robot_joint_velocities.csv")
 SENSOR_FORCE_PATH = Path("sensor_contact_forces.csv")
 
 def main():
@@ -40,7 +41,7 @@ def main():
         sim_options=gs.options.SimOptions(
             gravity=(0.0, 0.0, -9.81),
             dt=args.timestep,
-            substeps=1,
+            substeps=2,
         ),
         rigid_options=gs.options.RigidOptions(
             # constraint_timeconst -> weld 판단 
@@ -62,8 +63,11 @@ def main():
     )
     cam = scene.add_camera(
         res=(1280, 960),
-        pos = (10,2,5),
-        lookat=(0, 2, 0.0),
+        # scale=10.0
+        # pos = (10,2,5),
+        # scale=5.0
+        pos = (5,1,2.5),
+        lookat=(0, 1, 0.0),
         fov=30,
         
         GUI=True,
@@ -120,10 +124,21 @@ def main():
             # motor shaft 최소 좌표: [-120.  340.   10.]
             # motor shaft 최대 좌표: [  0. 400.  90.]
             # pos = (-0.5, 3.4, 10.0),
-            pos = (0, 0, -10.0),
-            scale = 10.0,
+            
+            # scale = 5.0일 때의 기준
+            pos = (-.15, 1.65, -10.0),
+            scale = 5.0,
         )
     )
+    tablet_freejoint = scene.add_entity(
+        gs.morphs.MJCF(
+            file = "My_asset/Tablet_posmod/Tablet_posmod_freejoint.xml",
+            euler = (90,0,0),
+            pos = (0, -1, 0),
+            scale = 5.0,
+        )
+    )
+
     ## Test 용 box ( Talbet 대체 )
     box = scene.add_entity(
         gs.morphs.Box(
@@ -131,6 +146,11 @@ def main():
             # pos = (-0.5, 3.2, 10.0),
             size = (0.05, 0.02, 0.05),
             fixed = True,
+        )
+    )
+    plane = scene.add_entity(
+        gs.morphs.Plane(
+            pos = (0.0, 0.0, 0.0),
         )
     )
 
@@ -145,43 +165,43 @@ def main():
         tablet_link_idx[name][1] = tablet_links[i].idx_local
     print(tablet_link_idx)
 
-    # # add sensors to the scene
-    # for link_name in tablet_link_name:
-    #     if args.force:
-    #         sensor_options = gs.sensors.ContactForce(
-    #             entity_idx=tablet.idx,
-    #             link_idx_local=tablet.get_link(link_name).idx_local,
-    #             draw_debug=True,
-    #         )
-    #         plot_kwargs = dict(
-    #             title=f"{link_name} Force Sensor Data",
-    #             labels=["force_x", "force_y", "force_z"],
-    #         )
-    #     else:
-    #         sensor_options = gs.sensors.Contact(
-    #             entity_idx=tablet.idx,
-    #             link_idx_local=tablet.get_link(link_name).idx_local,
-    #             draw_debug=True,
-    #         )
-    #         plot_kwargs = dict(
-    #             title=f"{link_name} Contact Sensor Data",
-    #             labels=["in_contact"],
-    #             window_size=(960, 1080),
-    #         )
+    # add sensors to the scene
+    for link_name in tablet_link_name:
+        if args.force:
+            sensor_options = gs.sensors.ContactForce(
+                entity_idx=tablet.idx,
+                link_idx_local=tablet.get_link(link_name).idx_local,
+                draw_debug=True,
+            )
+            plot_kwargs = dict(
+                title=f"{link_name} Force Sensor Data",
+                labels=["force_x", "force_y", "force_z"],
+            )
+        else:
+            sensor_options = gs.sensors.Contact(
+                entity_idx=tablet.idx,
+                link_idx_local=tablet.get_link(link_name).idx_local,
+                draw_debug=True,
+            )
+            plot_kwargs = dict(
+                title=f"{link_name} Contact Sensor Data",
+                labels=["in_contact"],
+                window_size=(960, 1080),
+            )
 
     ## box Entity의 경우에 문제가 생기는지 확인. 
-    if args.force:
-        sensor_options = gs.sensors.ContactForce(
-            entity_idx=box.idx,
-            draw_debug=True,
-        )
-        plot_kwargs = dict(
-            title=f"{link_name} Force Sensor Data",
-            labels=["force_x", "force_y", "force_z"],
-            window_size=(960, 1080),
-        )
-    else:
-        pass
+    # if args.force:
+    #     sensor_options = gs.sensors.ContactForce(
+    #         entity_idx=box.idx,
+    #         draw_debug=True,
+    #     )
+    #     plot_kwargs = dict(
+    #         title=f"{link_name} Force Sensor Data",
+    #         labels=["force_x", "force_y", "force_z"],
+    #         window_size=(960, 1080),
+    #     )
+    # else:
+    #     pass
 
     sensor = scene.add_sensor(sensor_options)
 
@@ -219,14 +239,17 @@ def main():
     ############################### hard reset ##########################
     ######################## control dofs ########################
     Crank_slider_system.set_dofs_kp(
-    kp = np.array([0.1,]),
-    dofs_idx_local = [0],
+        kp = np.array([0.1,]),
+        dofs_idx_local = [0],
     )
     Crank_slider_system.set_dofs_kv(
         kv = np.array([.1,]),
         dofs_idx_local = [0],
     )
-
+    Crank_slider_system.set_dofs_armature(
+        armature = np.array([0.05,]),
+        dofs_idx_local = [0],
+    )
     # set_dof_position 
     desired_velocity = -m.pi 
     desired_position_list = [desired_velocity if i == 0 else 0.0 for i in range(len(dofs_idx))]
@@ -244,13 +267,14 @@ def main():
 
     # tablet initial positin 설정
     tablet_initial_pos = tablet.get_pos().tolist()
-    tablet_initial_pos[-1] -= 9.5
-    tablet.set_pos(pos = tablet_initial_pos)
+    tablet_update_pos = tablet_initial_pos.copy()
+    tablet_update_pos[-1] += 10.25  # Wall 두께 고려
+    # tablet_freejoint.set_pos(pos = tablet_update_pos)
 
     # box initial position 설정
-    box_initial_pos = box.get_pos().tolist()
-    box_initial_pos[-1] -= 9.8
-    box.set_pos(pos = box_initial_pos)
+    # box_initial_pos = box.get_pos().tolist()
+    # box_initial_pos[-1] -= 9.8
+    # box.set_pos(pos = box_initial_pos)
     flag = True
     for i in range(200):
         if flag:
@@ -261,47 +285,93 @@ def main():
         scene.step()
 
     import CSV_reader # CSV 로깅 유틸리티
+    from collections import deque
+    
+    ZERO_WINDOW = 100
+    EPS = 1e-1
 
+    # 최근 100스텝의 "크랭크 힘" 기록 (명령값 기준)
+    crank_force_q = deque(maxlen=ZERO_WINDOW)
+    crank_velocity_q = deque(maxlen=ZERO_WINDOW)
+
+    direction = 1.0             # +1이면 정방향, -1이면 역방향
+    force_amp = 10.0            # 힘 크기 (원하는 대로)
+    velocity_amp = 16 * m.pi / 60      # 속도 크기 (원하는 대로)
+    desired_force_list = [direction * force_amp]
+    desired_velocity_list = [direction * velocity_amp]
     try:
         robot_f, robot_writer = CSV_reader.init_robot_csv()
+        robot_vel_f, robot_vel_writer = CSV_reader.init_robot_velocity_csv()
         sensor_f, sensor_writer = CSV_reader.init_sensor_csv()
 
-        # second: 2.0, timestep = 0.01
+        # second: 2.0, timestep = 0.001
         steps = int(args.seconds / args.timestep) if "PYTEST_VERSION" not in os.environ else 10
         print("steps : ", steps)
         # cam.set_pose(pos = (5, 3.5, 2.5), lookat = (0, 3.5, 0))
-        desired_force_list = [10.0]
-        box.set_pos(pos = box_initial_pos)                
+        desired_force_list = [force_amp]
+        # box.set_pos(pos = box_initial_pos)
+        
         for _ in range(steps):
             # 1. 제어 및 robot forces 저장
-            Crank_slider_system.control_dofs_force(desired_force_list, [0])
+            # 1-1. force control
+            # Crank_slider_system.control_dofs_force(desired_force_list, [0])
+            # 1-2. velocity control
+            Crank_slider_system.control_dofs_velocity(desired_velocity_list, [0])
+            # 1-3. robot force 로그
             robot_forces = Crank_slider_system.get_dofs_force().cpu().numpy()
             CSV_reader.log_robot_forces(robot_writer, _, robot_forces)
+            # 1-4 velocity 로그
+            robot_velocities = Crank_slider_system.get_dofs_velocity().cpu().numpy()
+            CSV_reader.log_robot_velocities(robot_vel_writer, _, robot_velocities)
 
             # 2. Sensor force 저장
+            # 2-1. contact sensor
             sensor_force = sensor.read().cpu().numpy()  # shape: (3,) 예상
             CSV_reader.log_sensor_force(sensor_writer, _, sensor_force)
  
+        
             # 3. 디버깅 출력 (선택적)
             print(f"Step {_}: Robot forces={robot_forces.tolist()}, "
                 f"Sensor force={sensor_force.tolist()}, magnitude={np.linalg.norm(sensor_force):.2f}")
 
-            cam.set_pose(
-                lookat = (-0.5, 3.4, .5),
-                pos=(1, 3.4, .5),
-            )
+            # 4. 최근 크랭크 힘 기록 업데이트
+            # crank_force_q.append(robot_forces[0])  # 크랭크 힘만 기록, queue 에 업데이트
+            # if len(crank_force_q) == ZERO_WINDOW and all(abs(x) < EPS for x in crank_force_q):
+            #     direction *= -1.0
+            #     desired_velocity_list = [direction * velocity_amp]
+            #     crank_velocity_q.clear() # velocity queue 도 초기화
+
+            crank_velocity_q.append(robot_velocities[0])  # 크랭크 속도만 기록, queue 에 업데이트
+            if len(crank_velocity_q) == ZERO_WINDOW and all(abs(x) < EPS for x in crank_velocity_q):
+                direction *= -1.0
+                desired_velocity_list = [direction * velocity_amp]
+                crank_velocity_q.clear() # velocity queue 도 초기화
+
+            # 카메라-타블렛 위치
+            # cam.set_pose(
+            #     lookat = (-0.25, 1.65, .25),
+            #     pos=(1.0, 1.65, .25),
+            # )
+            cam.set_pose()
             cam.render()
             scene.step()
+            # 실제 파손 모델링 적용 constraint weld 해제 
+            if _ == steps // 2:
+                tablet.set_pos(pos = tablet_initial_pos)
+                # tablet_freejoint.set_pos(pos=tablet_update_pos)
+                print(tablet_initial_pos)
+                print(tablet_update_pos)
 
     except KeyboardInterrupt:
         gs.logger.info("Simulation interrupted, exiting.")
     finally:
         robot_f.close()
+        robot_vel_f.close()
         sensor_f.close()
         gs.logger.info("Simulation finished.")
         gs.logger.info(f"  - Robot forces: {ROBOT_FORCE_PATH}")
         gs.logger.info(f"  - Sensor forces: {SENSOR_FORCE_PATH}")
-        cam.stop_recording(save_to_filename ="video/[20260210]SystemIntegration scale_5.0 (1).mp4")
+        cam.stop_recording(save_to_filename ="video/[20260211]SystemIntegration scale_5.0_Crank-slider_only_VelocityControl (5).mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
