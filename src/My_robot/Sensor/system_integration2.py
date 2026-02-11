@@ -26,7 +26,7 @@ def main():
     parser.add_argument("-v", "--vis", action="store_true", default=True, help="Show visualization GUI")
     parser.add_argument("-nv", "--no-vis", action="store_false", dest="vis", help="Disable visualization GUI")
     parser.add_argument("-c", "--cpu", action="store_true", help="Use CPU instead of GPU")
-    parser.add_argument("-t", "--seconds", type=float, default=2.0, help="Number of seconds to simulate")
+    parser.add_argument("-t", "--seconds", type=float, default=5.0, help="Number of seconds to simulate")
     parser.add_argument("-f", "--force", action="store_true", default=True, help="Use ContactForceSensor (xyz float)")
     parser.add_argument("-nf", "--no-force", action="store_false", dest="force", help="Use ContactSensor (boolean)")
 
@@ -251,7 +251,7 @@ def main():
         dofs_idx_local = [0],
     )
     # set_dof_position 
-    desired_velocity = -m.pi 
+    desired_velocity = -0.5 * m.pi 
     desired_position_list = [desired_velocity if i == 0 else 0.0 for i in range(len(dofs_idx))]
 
     # Crank_slider initial position 설정
@@ -269,7 +269,7 @@ def main():
     tablet_initial_pos = tablet.get_pos().tolist()
     tablet_update_pos = tablet_initial_pos.copy()
     tablet_update_pos[-1] += 10.25  # Wall 두께 고려
-    # tablet_freejoint.set_pos(pos = tablet_update_pos)
+    tablet.set_pos(pos = tablet_update_pos)
 
     # box initial position 설정
     # box_initial_pos = box.get_pos().tolist()
@@ -287,15 +287,15 @@ def main():
     import CSV_reader # CSV 로깅 유틸리티
     from collections import deque
     
-    ZERO_WINDOW = 100
-    EPS = 1e-1
+    ZERO_WINDOW = 50  # 최근 스텝에서 힘이 0인지 판단하는 윈도우 크기
+    EPS = 0.5  # 힘이 0으로 간주되는 임계값
 
     # 최근 100스텝의 "크랭크 힘" 기록 (명령값 기준)
     crank_force_q = deque(maxlen=ZERO_WINDOW)
     crank_velocity_q = deque(maxlen=ZERO_WINDOW)
 
     direction = 1.0             # +1이면 정방향, -1이면 역방향
-    force_amp = 10.0            # 힘 크기 (원하는 대로)
+    force_amp = 15.0            # 힘 크기 (원하는 대로)
     velocity_amp = 16 * m.pi / 60      # 속도 크기 (원하는 대로)
     desired_force_list = [direction * force_amp]
     desired_velocity_list = [direction * velocity_amp]
@@ -314,9 +314,9 @@ def main():
         for _ in range(steps):
             # 1. 제어 및 robot forces 저장
             # 1-1. force control
-            # Crank_slider_system.control_dofs_force(desired_force_list, [0])
+            Crank_slider_system.control_dofs_force(desired_force_list, [0])
             # 1-2. velocity control
-            Crank_slider_system.control_dofs_velocity(desired_velocity_list, [0])
+            # Crank_slider_system.control_dofs_velocity(desired_velocity_list, [0])
             # 1-3. robot force 로그
             robot_forces = Crank_slider_system.get_dofs_force().cpu().numpy()
             CSV_reader.log_robot_forces(robot_writer, _, robot_forces)
@@ -328,24 +328,23 @@ def main():
             # 2-1. contact sensor
             sensor_force = sensor.read().cpu().numpy()  # shape: (3,) 예상
             CSV_reader.log_sensor_force(sensor_writer, _, sensor_force)
- 
         
             # 3. 디버깅 출력 (선택적)
             print(f"Step {_}: Robot forces={robot_forces.tolist()}, "
                 f"Sensor force={sensor_force.tolist()}, magnitude={np.linalg.norm(sensor_force):.2f}")
 
             # 4. 최근 크랭크 힘 기록 업데이트
-            # crank_force_q.append(robot_forces[0])  # 크랭크 힘만 기록, queue 에 업데이트
-            # if len(crank_force_q) == ZERO_WINDOW and all(abs(x) < EPS for x in crank_force_q):
+            crank_force_q.append(robot_forces[0])  # 크랭크 힘만 기록, queue 에 업데이트
+            if len(crank_force_q) == ZERO_WINDOW and all(abs(x) < EPS for x in crank_force_q):
+                direction *= -1.0
+                desired_force_list = [direction * force_amp]
+                crank_force_q.clear() # force queue 도 초기화
+
+            # crank_velocity_q.append(robot_velocities[0])  # 크랭크 속도만 기록, queue 에 업데이트
+            # if len(crank_velocity_q) == ZERO_WINDOW and all(abs(x) < EPS for x in crank_velocity_q):
             #     direction *= -1.0
             #     desired_velocity_list = [direction * velocity_amp]
             #     crank_velocity_q.clear() # velocity queue 도 초기화
-
-            crank_velocity_q.append(robot_velocities[0])  # 크랭크 속도만 기록, queue 에 업데이트
-            if len(crank_velocity_q) == ZERO_WINDOW and all(abs(x) < EPS for x in crank_velocity_q):
-                direction *= -1.0
-                desired_velocity_list = [direction * velocity_amp]
-                crank_velocity_q.clear() # velocity queue 도 초기화
 
             # 카메라-타블렛 위치
             # cam.set_pose(
@@ -357,7 +356,7 @@ def main():
             scene.step()
             # 실제 파손 모델링 적용 constraint weld 해제 
             if _ == steps // 2:
-                tablet.set_pos(pos = tablet_initial_pos)
+                # tablet.set_pos(pos = tablet_initial_pos)
                 # tablet_freejoint.set_pos(pos=tablet_update_pos)
                 print(tablet_initial_pos)
                 print(tablet_update_pos)
@@ -371,7 +370,7 @@ def main():
         gs.logger.info("Simulation finished.")
         gs.logger.info(f"  - Robot forces: {ROBOT_FORCE_PATH}")
         gs.logger.info(f"  - Sensor forces: {SENSOR_FORCE_PATH}")
-        cam.stop_recording(save_to_filename ="video/[20260211]SystemIntegration scale_5.0_Crank-slider_only_VelocityControl (5).mp4")
+        cam.stop_recording(save_to_filename ="video/[20260211]Tablet충돌힘계산3.mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
