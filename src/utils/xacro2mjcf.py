@@ -45,14 +45,13 @@ if __name__ == "__main__":
         config = yaml.safe_load(file)
 
     asset_path = config["file_path"]["asset"]
-    Robot_name = "SAMPLEBAG"  # 여기에 로봇 이름을 입력하세요.
-    file_path = asset_path + Robot_name + "_description" + "/urdf/"
+    Robot_name = "Crusher"  # 여기에 로봇 이름을 입력하세요.
+    file_path = asset_path + Robot_name + "_description2" + "/urdf/"
     xacro_file = file_path + Robot_name + ".xacro"
     urdf_file = file_path + Robot_name + ".urdf"
     output_urdf_path = file_path + Robot_name + "_fixed.urdf"
     
     if not os.path.exists(output_urdf_path):
-
         # xacro 내에서 package 경로 치환
         with open(xacro_file, 'r') as file:
             xacro_content = file.read()

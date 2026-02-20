@@ -65,10 +65,15 @@ def main():
         res=(1280, 960),
         # scale=10.0
         # pos = (10,2,5),
+
         # scale=5.0
-        pos = (5,1,2.5),
-        lookat=(0, 1, 0.0),
-        fov=30,
+        # pos = (5,1,2.5),
+        # lookat=(0, 1, 0.0),
+        # fov=30,
+
+        # scale=1.0
+        pos = (1, 0.5, 1.0),
+        lookat=(0, 0.2, 0.0),
         
         GUI=True,
     )
@@ -78,7 +83,7 @@ def main():
     # Crank-slider system
     Crank_slider_system = scene.add_entity(
         gs.morphs.MJCF(
-            file = "./My_asset/Crusher_description/urdf/" \
+            file = "./My_asset/Crusher_description2/urdf/" \
             "Crusher.xml",
             pos = (0, 0.0, 0),
             scale = 5.0,
@@ -94,7 +99,7 @@ def main():
     "Link2_1",
     "Link3_1",
     "shaft_1",
-    "Wall_1"
+    # "Wall_1"
     ]
     links = [Crank_slider_system.get_link(name) for name in link_name]
     print("links : ", links)
@@ -126,8 +131,12 @@ def main():
             # pos = (-0.5, 3.4, 10.0),
             
             # scale = 5.0일 때의 기준
-            pos = (-.15, 1.65, -10.0),
-            scale = 5.0,
+            # pos = (-.15, 1.65, -10.0),           
+            # scale = 5.0,
+
+            # scale = 1.0일 때의 기준
+            pos = (-0.03, 0.33, -10.0),
+            scale = 1.0,
         )
     )
     tablet_freejoint = scene.add_entity(
@@ -142,7 +151,8 @@ def main():
     ## Test 용 box ( Talbet 대체 )
     box = scene.add_entity(
         gs.morphs.Box(
-            pos = (-.15, 1.65, 10.0),
+            pos = (-0.03, 0.33, 10.0),
+            # pos = (-.15, 1.65, 10.0),
             # pos = (-0.5, 3.2, 10.0),
             size = (0.05, 0.02, 0.05),
             fixed = True,
@@ -225,11 +235,6 @@ def main():
     # link2_idx_arr = np.array(link2.idx, dtype=gs.np_int)
     # solver.add_weld_constraint(link1_idx_arr, link2_idx_arr)
 
-    tablet_pos = Crank_slider_system.get_links_pos(link_idx["Wall_1"][0])
-    tablet_pos = tablet_pos.tolist()
-    tablet_pos[0][2] += 0.05  # Wall 의 두께 고려
-    print(tablet_pos)
-    # tablet.set_pos(pos = tablet_pos[0])
 
     # 특정 link 의 좌표를 가져올 수 있는 게 아닌, 전체 Entity 의 좌표를 가져오는 것임.
     print("Wall_position : ", Crank_slider_system.get_links_pos())
@@ -268,7 +273,7 @@ def main():
     # tablet initial positin 설정
     tablet_initial_pos = tablet.get_pos().tolist()
     tablet_update_pos = tablet_initial_pos.copy()
-    tablet_update_pos[-1] += 10.25  # Wall 두께 고려
+    tablet_update_pos[-1] += 10.05  # Wall 두께 고려
     tablet.set_pos(pos = tablet_update_pos)
 
     # box initial position 설정
@@ -307,10 +312,8 @@ def main():
         # second: 2.0, timestep = 0.001
         steps = int(args.seconds / args.timestep) if "PYTEST_VERSION" not in os.environ else 10
         print("steps : ", steps)
-        # cam.set_pose(pos = (5, 3.5, 2.5), lookat = (0, 3.5, 0))
         desired_force_list = [force_amp]
-        # box.set_pos(pos = box_initial_pos)
-        
+
         for _ in range(steps):
             # 1. 제어 및 robot forces 저장
             # 1-1. force control
@@ -333,13 +336,14 @@ def main():
             print(f"Step {_}: Robot forces={robot_forces.tolist()}, "
                 f"Sensor force={sensor_force.tolist()}, magnitude={np.linalg.norm(sensor_force):.2f}")
 
-            # 4. 최근 크랭크 힘 기록 업데이트
+            # 4-1. 최근 크랭크 힘 기록 업데이트 (힘 제어 시)
             crank_force_q.append(robot_forces[0])  # 크랭크 힘만 기록, queue 에 업데이트
             if len(crank_force_q) == ZERO_WINDOW and all(abs(x) < EPS for x in crank_force_q):
                 direction *= -1.0
                 desired_force_list = [direction * force_amp]
                 crank_force_q.clear() # force queue 도 초기화
 
+            # 4-2 최근 크랭크 속도 기록 업데이트 (속도 제어 시)
             # crank_velocity_q.append(robot_velocities[0])  # 크랭크 속도만 기록, queue 에 업데이트
             # if len(crank_velocity_q) == ZERO_WINDOW and all(abs(x) < EPS for x in crank_velocity_q):
             #     direction *= -1.0
