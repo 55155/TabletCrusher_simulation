@@ -86,7 +86,7 @@ def main():
             file = "./My_asset/Crusher_description2/urdf/" \
             "Crusher.xml",
             pos = (0, 0.0, 0),
-            scale = 5.0,
+            scale = 1.0,
         ),
         surface=gs.surfaces.Default(
             smooth=False,
@@ -151,10 +151,13 @@ def main():
     ## Test 용 box ( Talbet 대체 )
     box = scene.add_entity(
         gs.morphs.Box(
-            pos = (-0.03, 0.33, 10.0),
+            pos = (-0.03, 0.33, -10.0),
             # pos = (-.15, 1.65, 10.0),
             # pos = (-0.5, 3.2, 10.0),
-            size = (0.05, 0.02, 0.05),
+            # scale = 5.0,
+            # size = (0.05, 0.02, 0.05),
+            # scale= 1.0,
+            size = (0.01, 0.01, 0.01),
             fixed = True,
         )
     )
@@ -175,43 +178,43 @@ def main():
         tablet_link_idx[name][1] = tablet_links[i].idx_local
     print(tablet_link_idx)
 
-    # add sensors to the scene
-    for link_name in tablet_link_name:
-        if args.force:
-            sensor_options = gs.sensors.ContactForce(
-                entity_idx=tablet.idx,
-                link_idx_local=tablet.get_link(link_name).idx_local,
-                draw_debug=True,
-            )
-            plot_kwargs = dict(
-                title=f"{link_name} Force Sensor Data",
-                labels=["force_x", "force_y", "force_z"],
-            )
-        else:
-            sensor_options = gs.sensors.Contact(
-                entity_idx=tablet.idx,
-                link_idx_local=tablet.get_link(link_name).idx_local,
-                draw_debug=True,
-            )
-            plot_kwargs = dict(
-                title=f"{link_name} Contact Sensor Data",
-                labels=["in_contact"],
-                window_size=(960, 1080),
-            )
+    # # add sensors to the scene
+    # for link_name in tablet_link_name:
+    #     if args.force:
+    #         sensor_options = gs.sensors.ContactForce(
+    #             entity_idx=tablet.idx,
+    #             link_idx_local=tablet.get_link(link_name).idx_local,
+    #             draw_debug=True,
+    #         )
+    #         plot_kwargs = dict(
+    #             title=f"{link_name} Force Sensor Data",
+    #             labels=["force_x", "force_y", "force_z"],
+    #         )
+    #     else:
+    #         sensor_options = gs.sensors.Contact(
+    #             entity_idx=tablet.idx,
+    #             link_idx_local=tablet.get_link(link_name).idx_local,
+    #             draw_debug=True,
+    #         )
+    #         plot_kwargs = dict(
+    #             title=f"{link_name} Contact Sensor Data",
+    #             labels=["in_contact"],
+    #             window_size=(960, 1080),
+    #         )
 
-    ## box Entity의 경우에 문제가 생기는지 확인. 
-    # if args.force:
-    #     sensor_options = gs.sensors.ContactForce(
-    #         entity_idx=box.idx,
-    #         draw_debug=True,
-    #     )
-    #     plot_kwargs = dict(
-    #         title=f"{link_name} Force Sensor Data",
-    #         labels=["force_x", "force_y", "force_z"],
-    #         window_size=(960, 1080),
-    #     )
-    # else:
-    #     pass
+    # box Entity의 경우에 문제가 생기는지 확인. 
+    if args.force:
+        sensor_options = gs.sensors.ContactForce(
+            entity_idx=box.idx,
+            draw_debug=True,
+        )
+        plot_kwargs = dict(
+            title=f"{link_name} Force Sensor Data",
+            labels=["force_x", "force_y", "force_z"],
+            window_size=(960, 1080),
+        )
+    else:
+        pass
 
     sensor = scene.add_sensor(sensor_options)
 
@@ -256,12 +259,12 @@ def main():
         dofs_idx_local = [0],
     )
     # set_dof_position 
-    desired_velocity = -0.5 * m.pi 
-    desired_position_list = [desired_velocity if i == 0 else 0.0 for i in range(len(dofs_idx))]
+    desired_position = -0.5 * m.pi 
+    desired_position_list = [desired_position if i == 0 else 0.0 for i in range(len(dofs_idx))]
 
     # Crank_slider initial position 설정
     flag = True
-    # Crank_slider_system.set_dofs_position(desired_position_list, dofs_idx)
+    Crank_slider_system.set_dofs_position(desired_position_list, dofs_idx)
     for i in range(1000):    
         if flag:
             print("Crank-slider Initial Pos : ", Crank_slider_system.get_dofs_position(dofs_idx))
@@ -274,7 +277,7 @@ def main():
     tablet_initial_pos = tablet.get_pos().tolist()
     tablet_update_pos = tablet_initial_pos.copy()
     tablet_update_pos[-1] += 10.05  # Wall 두께 고려
-    tablet.set_pos(pos = tablet_update_pos)
+    box.set_pos(pos = tablet_update_pos)
 
     # box initial position 설정
     # box_initial_pos = box.get_pos().tolist()
@@ -360,7 +363,7 @@ def main():
             scene.step()
             # 실제 파손 모델링 적용 constraint weld 해제 
             if _ == steps // 2:
-                # tablet.set_pos(pos = tablet_initial_pos)
+                # tablet.set_pos(pos=tablet_initial_pos)
                 # tablet_freejoint.set_pos(pos=tablet_update_pos)
                 print(tablet_initial_pos)
                 print(tablet_update_pos)
@@ -374,7 +377,7 @@ def main():
         gs.logger.info("Simulation finished.")
         gs.logger.info(f"  - Robot forces: {ROBOT_FORCE_PATH}")
         gs.logger.info(f"  - Sensor forces: {SENSOR_FORCE_PATH}")
-        cam.stop_recording(save_to_filename ="video/[20260211]Tablet충돌힘계산3.mp4")
+        cam.stop_recording(save_to_filename ="video/[20260222]Tablet충돌힘계산3.mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
