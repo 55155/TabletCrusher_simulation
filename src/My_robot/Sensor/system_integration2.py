@@ -377,7 +377,7 @@ def main():
         gs.logger.info("Simulation finished.")
         gs.logger.info(f"  - Robot forces: {ROBOT_FORCE_PATH}")
         gs.logger.info(f"  - Sensor forces: {SENSOR_FORCE_PATH}")
-        cam.stop_recording(save_to_filename ="video/[20260222]Tablet충돌힘계산3.mp4")
+        cam.stop_recording(save_to_filename ="video/[20260223]Tablet충돌힘계산_Pjoint알약.mp4")
         scene.stop_recording()
 
 if __name__ == "__main__":
