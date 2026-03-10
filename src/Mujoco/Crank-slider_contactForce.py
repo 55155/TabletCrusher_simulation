@@ -1,117 +1,81 @@
 import time
-import csv
 import mujoco
 import mujoco.viewer
 import numpy as np
 
 SCENE_XML = "/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Scene_description/Scene.xml"
 
-# 두 개 파일
-IMPACT_CSV = "tablet_impact_plate_contact.csv"
-WALL_CSV   = "tablet_wall1_contact.csv"
+model = mujoco.MjModel.from_xml_path(SCENE_XML)
+data  = mujoco.MjData(model)
 
-ACT_NAME   = "crank_motor"
-CTRL_VALUE = 10.0
+if model.nkey > 0:
+    mujoco.mj_resetDataKeyframe(model, data, 0)
+else:
+    mujoco.mj_resetData(model, data)
+mujoco.mj_forward(model, data)
 
-LOG_EVERY   = 1
-MAX_SAMPLES = 6000
-TABLET_BODY = "tablet"
+impact_plate_bid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_BODY, "shaft_1")
+tablet_bid       = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_BODY, "tablet")
 
-IMPACT_KEYWORD = "Impact plate"  # geom 이름에 포함될 키워드
-WALL_KEYWORD   = "Wall_1"
+# optional actuator
+crank_act_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_ACTUATOR, "crank_motor")
 
+PRINT_EVERY = 10
+step_count = 0
+ft = np.zeros(6, dtype=np.float64)
 
-def main():
-    model = mujoco.MjModel.from_xml_path(SCENE_XML)
-    data  = mujoco.MjData(model)
+with mujoco.viewer.launch_passive(model, data) as viewer:
+    while viewer.is_running():
+        if crank_act_id != -1:
+            data.ctrl[crank_act_id] = 100.0
 
-    if model.nkey > 0:
-        mujoco.mj_resetDataKeyframe(model, data, 0)
-    else:
-        mujoco.mj_resetData(model, data)
-    mujoco.mj_forward(model, data)
+        mujoco.mj_step(model, data)
 
-    crank_act_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_ACTUATOR, ACT_NAME)
-    if crank_act_id < 0:
-        raise ValueError(f"Actuator not found: {ACT_NAME}")
+        if step_count % PRINT_EVERY == 0 and data.ncon > 0:
+            # (옵션) 해당 스텝에서 Impact_plate에 작용한 접촉력 합력
+            Fsum = np.zeros(3)
 
-    tablet_bid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_BODY, TABLET_BODY)
-    if tablet_bid < 0:
-        raise ValueError(f"Body not found: {TABLET_BODY}")
+            for i in range(data.ncon):
+                con = data.contact[i]
+                g1, g2 = con.geom1, con.geom2
+                b1 = model.geom_bodyid[g1]
+                b2 = model.geom_bodyid[g2]
 
-    # tablet geom ids
-    tablet_geom_ids = [g for g in range(model.ngeom) if model.geom_bodyid[g] == tablet_bid]
+                # Impact_plate <-> tablet 만 선택
+                is_pair = ((b1 == impact_plate_bid and b2 == tablet_bid) or
+                           (b1 == tablet_bid and b2 == impact_plate_bid))
+                if not is_pair:
+                    continue
 
-    # 두 CSV용 데이터
-    impact_rows = []
-    wall_rows = []
+                # 6D force:torque in contact frame
+                mujoco.mj_contactForce(model, data, i, ft)  # [web:11]
+                f_c = ft[:3].copy()
 
-    step_count = 0
+                # contact frame -> world (simulate 코드도 동일한 방식으로 변환)  [web:19]
+                R = con.frame.reshape(3, 3)
+                f_world_on_geom2 = R.T @ f_c
 
-    try:
-        with mujoco.viewer.launch_passive(model, data) as viewer:
-            while viewer.is_running():
-                data.ctrl[crank_act_id] = CTRL_VALUE
+                # mj_contactForce는 geom2에 작용하는 힘으로 보는 해석이 일반적이며,
+                # geom1의 힘은 -1을 곱해 사용합니다. [web:14]
+                if b2 == impact_plate_bid:
+                    F_impact = f_world_on_geom2
+                elif b1 == impact_plate_bid:
+                    F_impact = -f_world_on_geom2
+                else:
+                    continue
 
-                mujoco.mj_step(model, data)
+                Fsum += F_impact
 
-                if step_count % LOG_EVERY == 0:
-                    t = float(data.time)
+                # 더 작은 값도 보이게 소수점 자릿수 늘림
+                print(f"[t={data.time:8.4f}] Impact_plate<->tablet  "
+                      f"F_impact_world = [{F_impact[0]: .6f}, {F_impact[1]: .6f}, {F_impact[2]: .6f}]  "
+                      f"|F|={np.linalg.norm(F_impact):.6f} N")
 
-                    # Impact plate contact 찾기
-                    impact_normal = 0.0
-                    # Wall_1 contact 찾기
-                    wall_normal = 0.0
+            # contact가 여러 개면 합력도 같이 보고 싶을 때
+            if np.linalg.norm(Fsum) > 0:
+                print(f"                SUM on Impact_plate = [{Fsum[0]: .6f}, {Fsum[1]: .6f}, {Fsum[2]: .6f}]  "
+                      f"|SUM|={np.linalg.norm(Fsum):.6f} N")
 
-                    for i in range(data.ncon):
-                        con = data.contact[i]
-                        
-                        # Tablet 관련 contact만
-                        if (con.geom1 in tablet_geom_ids) or (con.geom2 in tablet_geom_ids):
-                            wrench = np.zeros(6)
-                            mujoco.mj_contactForce(model, data, i, wrench)
-                            
-                            # Tablet이 받는 방향으로 부호 맞추기
-                            normal = wrench[0] if con.geom1 in tablet_geom_ids else -wrench[0]
-                            
-                            # geom 이름으로 구분
-                            g1_name = model.geom(gid=con.geom1).name if con.geom1>=0 else ""
-                            g2_name = model.geom(gid=con.geom2).name if con.geom2>=0 else ""
-                            pair_names = g1_name + g2_name
-                            
-                            if IMPACT_KEYWORD in pair_names:
-                                impact_normal += normal
-                            elif WALL_KEYWORD in pair_names:
-                                wall_normal += normal
-
-                    # 각 파일에 기록
-                    impact_rows.append([t, impact_normal])
-                    wall_rows.append([t, wall_normal])
-
-                    # 6000개 샘플이면 종료
-                    if len(impact_rows) >= MAX_SAMPLES:
-                        break
-
-                viewer.sync()
-                time.sleep(model.opt.timestep)
-                step_count += 1
-
-    finally:
-        # Impact plate CSV 저장
-        with open(IMPACT_CSV, "w", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow(["time_s", "normal_force_N"])
-            writer.writerows(impact_rows)
-        
-        # Wall_1 CSV 저장
-        with open(WALL_CSV, "w", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow(["time_s", "normal_force_N"])
-            writer.writerows(wall_rows)
-
-        print(f"Saved {len(impact_rows)} impact plate contacts to: {IMPACT_CSV}")
-        print(f"Saved {len(wall_rows)} wall_1 contacts to: {WALL_CSV}")
-
-
-if __name__ == "__main__":
-    main()
+        viewer.sync()
+        time.sleep(model.opt.timestep)
+        step_count += 1
