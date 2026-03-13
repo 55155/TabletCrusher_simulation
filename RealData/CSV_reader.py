@@ -37,6 +37,9 @@ def load_and_clean(csv_path):
 
     # NO는 원래 내림차순일 수 있으니 오름차순 정렬
     df = df.sort_values("NO").reset_index(drop=True)
+
+    # 초기 불안정 샘플 제거 (앞 200개 행)
+    df = df.iloc[200:].reset_index(drop=True)
     return df
 
 def find_first_periodic_peak(x, y):
