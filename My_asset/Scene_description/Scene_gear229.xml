@@ -1,0 +1,4 @@
+<mujoco model="scene">
+  <include file="../Crusher_description2/urdf/Crusher_gear229.xml"/>
+  <include file="../Tablet_posmod/Tablet_posmod.xml"/>
+</mujoco>
