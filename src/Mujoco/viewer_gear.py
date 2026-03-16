@@ -1,10 +1,9 @@
 """
-MuJoCo Viewer  —  gear ratio selector + contact force direction reversal + real-time plot
+MuJoCo Viewer  —  gear ratio selector + material + contact force direction reversal + real-time plot
 
 Usage:
+    python viewer_gear.py --gear 229 --material al --torque 2.5
     python viewer_gear.py --gear 229
-    python viewer_gear.py --gear 1
-    python viewer_gear.py --gear 0.01
     python viewer_gear.py --gear 229 --ctrl 0.001 --threshold 1.0 --delay 3.0
 """
 
@@ -16,40 +15,59 @@ from collections import deque
 import mujoco
 import mujoco.viewer
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 
 # ── argument ──────────────────────────────────────────────────────────────
 parser = argparse.ArgumentParser(description="MuJoCo viewer with gear ratio selection")
 parser.add_argument("--gear",      type=float, required=True,
                     help="Gear ratio (0.01 / 1 / 229)")
-parser.add_argument("--ctrl",      type=float, default=0.001,
-                    help="Control input magnitude (default: 0.001)")
-parser.add_argument("--threshold", type=float, default=1.0,
-                    help="Contact force threshold [N] for direction reversal (default: 1.0)")
-parser.add_argument("--delay",     type=float, default=3.0,
-                    help="Delay [s] before direction reversal after threshold (default: 3.0)")
-parser.add_argument("--history",   type=int,   default=500,
-                    help="Number of data points shown in plot (default: 500)")
+parser.add_argument("--material",  type=str,   default="steel",
+                    choices=["steel", "al"],
+                    help="재질 선택: steel (기본) / al (알루미늄)")
+parser.add_argument("--torque",    type=float, default=None,
+                    help="Crank output torque [N·m] (ctrl = torque / gear). --ctrl 과 상호 배타.")
+parser.add_argument("--ctrl",      type=float, default=None,
+                    help="Raw control input magnitude (default: 0.001)")
+parser.add_argument("--window",    type=int,   default=50,
+                    help="방향전환 판단용 angular velocity moving window 크기 (default: 50 steps)")
+parser.add_argument("--zero_tol",  type=float, default=0.5,
+                    help="방향전환 기준: window 평균 |omega| [rad/s] 이하이면 전환 (default: 0.5)")
+parser.add_argument("--cooldown",  type=float, default=2.0,
+                    help="방향전환 후 최소 대기 시간 [s] (default: 2.0)")
 args = parser.parse_args()
+
+if args.torque is not None and args.ctrl is not None:
+    parser.error("--torque 와 --ctrl 은 동시에 사용할 수 없습니다.")
+if args.torque is None and args.ctrl is None:
+    args.ctrl = 0.001  # fallback default
+if args.torque is not None:
+    args.ctrl = args.torque / args.gear
 
 # ── Scene XML 매핑 ─────────────────────────────────────────────────────────
 BASE_DIR  = os.path.dirname(os.path.abspath(__file__))
 SCENE_DIR = os.path.normpath(os.path.join(BASE_DIR, "../../My_asset/Scene_description"))
 
 GEAR_MAP = {
-    0.01 : "Scene.xml",
-    1.0  : "Scene_gear1.xml",
-    229.0: "Scene_gear229.xml",
+    0.01 : {"steel": "Scene.xml"},
+    1.0  : {"steel": "Scene_gear1.xml"},
+    229.0: {"steel": "Scene_gear229.xml",
+             "al"  : "Scene_gear229_al.xml"},
 }
 
 if args.gear not in GEAR_MAP:
     available = ", ".join(str(k) for k in GEAR_MAP)
     raise ValueError(f"gear={args.gear} is not defined. Available: {available}")
 
-scene_file = GEAR_MAP[args.gear]
-print(f"[viewer] gear={args.gear}  ctrl=+/-{args.ctrl}  "
-      f"threshold={args.threshold} N  delay={args.delay} s  scene={scene_file}")
+mat_map = GEAR_MAP[args.gear]
+if args.material not in mat_map:
+    raise ValueError(f"material='{args.material}' not available for gear={args.gear}. "
+                     f"Available: {', '.join(mat_map.keys())}")
+
+scene_file = mat_map[args.material]
+torque_info = (f"torque={args.torque} N·m -> ctrl=+/-{args.ctrl:.6f}"
+               if args.torque is not None else f"ctrl=+/-{args.ctrl}")
+print(f"[viewer] gear={args.gear}  material={args.material}  {torque_info}  "
+      f"window={args.window}  zero_tol={args.zero_tol} rad/s  cooldown={args.cooldown}s  "
+      f"scene={scene_file}")
 
 # ── 모델 로드 (한글 경로 우회) ─────────────────────────────────────────────
 os.chdir(SCENE_DIR)
@@ -89,62 +107,21 @@ def contact_force_mag(ft_buf: np.ndarray) -> float:
     return F_mag
 
 
-# ── 실시간 플롯 설정 ──────────────────────────────────────────────────────
-N = args.history
-buf_t = deque(maxlen=N)
-buf_f = deque(maxlen=N)
-reversal_times = []   # 방향 전환 발생 시각 (수직선 표시용)
+# ── crank 관절 dof 주소 ────────────────────────────────────────────────────
+jnt_id  = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, "Revolute 10")
+dof_adr = model.jnt_dofadr[jnt_id]
 
-plt.ion()
-fig, ax = plt.subplots(figsize=(10, 4))
-fig.suptitle(f"Contact Force  |  gear={args.gear}  threshold={args.threshold} N  delay={args.delay} s",
-             fontsize=11)
-ax.set_xlabel("Time [s]")
-ax.set_ylabel("|F| [N]")
-ax.grid(True, alpha=0.4)
-
-line_f,       = ax.plot([], [], color="tab:blue",   linewidth=1.0, label="|F|")
-line_thresh   = ax.axhline(args.threshold, color="tab:red",    linewidth=0.8,
-                            linestyle="--", label=f"threshold={args.threshold} N")
-vlines = []   # 방향 전환 수직선
-
-ax.legend(fontsize=9, loc="upper right")
-plt.tight_layout()
-
-PLOT_EVERY = 5   # step마다 플롯 갱신 주기
-
-
-def update_plot():
-    if len(buf_t) < 2:
-        return
-    ts = list(buf_t)
-    fs = list(buf_f)
-
-    line_f.set_data(ts, fs)
-    ax.set_xlim(ts[0], ts[-1])
-
-    f_max = max(fs) if fs else 1.0
-    ax.set_ylim(-0.05 * f_max, f_max * 1.15 + args.threshold * 0.1)
-
-    # 새 방향 전환 수직선 추가
-    while len(vlines) < len(reversal_times):
-        vl = ax.axvline(reversal_times[len(vlines)], color="tab:orange",
-                        linewidth=0.8, linestyle=":", alpha=0.7)
-        vlines.append(vl)
-
-    fig.canvas.draw_idle()
-    plt.pause(0.001)
-
-
-# ── 시뮬레이션 상태 ──────────────────────────────────────────────────────
-ft_buf            = np.zeros(6)
-direction         = 1
-reversal_queue    = queue.Queue()
-last_enqueue_time = -999.0
-PRINT_EVERY       = 200
+# ── 상태 변수 ─────────────────────────────────────────────────────────────
+ft_buf         = np.zeros(6)
+direction      = 1
+peak_f         = 0.0
+last_reversal  = -999.0          # 마지막 방향전환 시각 (cooldown 용)
+omega_window   = deque(maxlen=args.window)   # 50-step moving window
+PRINT_EVERY    = 200
 
 print("[viewer] Running - close the window to exit.")
-print(f"         threshold={args.threshold} N  |  reversal delay={args.delay} s\n")
+print(f"         window={args.window} steps  |  zero_tol={args.zero_tol} rad/s  "
+      f"|  cooldown={args.cooldown}s\n")
 
 # ── 뷰어 실행 ────────────────────────────────────────────────────────────
 with mujoco.viewer.launch_passive(model, data) as viewer:
@@ -155,31 +132,27 @@ with mujoco.viewer.launch_passive(model, data) as viewer:
     step = 0
     while viewer.is_running():
         t_now = data.time
+        omega = data.qvel[dof_adr]          # rad/s
+        rpm   = omega * 60.0 / (2.0 * np.pi)
 
         # ── contact force 계산 ────────────────────────────────────────
         F_mag = contact_force_mag(ft_buf)
-        buf_t.append(t_now)
-        buf_f.append(F_mag)
+        if F_mag > peak_f:
+            peak_f = F_mag
 
-        # ── threshold 초과 → queue에 예약 (delay * 2 이내 중복 무시) ────
-        if F_mag >= args.threshold and (t_now - last_enqueue_time) > args.delay * 2:
-            trigger_time = t_now + args.delay
-            reversal_queue.put(trigger_time)
-            last_enqueue_time = t_now
-            print(f"[t={t_now:.3f}s]  |F|={F_mag:.4f} N >= {args.threshold} N  "
-                  f"-> reversal queued at t={trigger_time:.3f}s")
+        # ── 50-step moving window에 omega 추가 ────────────────────────
+        omega_window.append(abs(omega))
 
-        # ── queue에서 만료된 예약 실행 ────────────────────────────────
-        while not reversal_queue.empty():
-            trigger_time = reversal_queue.queue[0]
-            if t_now >= trigger_time:
-                reversal_queue.get()
-                direction *= -1
-                reversal_times.append(t_now)
-                print(f"[t={t_now:.3f}s]  reversal executed  "
-                      f"-> direction = {'+' if direction > 0 else '-'}")
-            else:
-                break
+        # ── 방향전환 판단 ─────────────────────────────────────────────
+        # 조건: window가 가득 찼고, 평균 |omega| < zero_tol, cooldown 경과
+        if (len(omega_window) == args.window
+                and np.mean(omega_window) < args.zero_tol
+                and (t_now - last_reversal) > args.cooldown):
+            direction    *= -1
+            last_reversal = t_now
+            omega_window.clear()   # window 초기화 (즉시 재발동 방지)
+            print(f"\n[t={t_now:.3f}s]  mean|ω|={np.mean(list(omega_window)+[abs(omega)]):.3f} rad/s "
+                  f"< {args.zero_tol}  ->  reversal: {'CW' if direction > 0 else 'CCW'}")
 
         # ── 제어 입력 적용 ────────────────────────────────────────────
         data.ctrl[act_id] = args.ctrl * direction
@@ -187,16 +160,16 @@ with mujoco.viewer.launch_passive(model, data) as viewer:
         mujoco.mj_step(model, data)
         viewer.sync()
 
-        # ── 플롯 갱신 ─────────────────────────────────────────────────
-        if step % PLOT_EVERY == 0:
-            update_plot()
-
+        # ── 콘솔 상태 출력 ────────────────────────────────────────────
         if step % PRINT_EVERY == 0:
-            print(f"[t={t_now:.3f}s]  |F|={F_mag:.4f} N  "
-                  f"ctrl={data.ctrl[act_id]:.4f}  queued={reversal_queue.qsize()}")
+            win_mean = np.mean(omega_window) if omega_window else 0.0
+            bar_len  = min(int(F_mag / 10), 50)
+            bar      = "█" * bar_len + "░" * (50 - bar_len)
+            print(f"\r[t={t_now:6.2f}s]  RPM={rpm:5.1f}  |F|={F_mag:6.1f}N  "
+                  f"peak={peak_f:6.1f}N  ω_avg={win_mean:.2f}  [{bar}]",
+                  end="", flush=True)
 
         time.sleep(model.opt.timestep)
         step += 1
 
-plt.ioff()
-plt.show()
+    print()  # 줄바꿈
