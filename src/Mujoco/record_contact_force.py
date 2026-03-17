@@ -1,24 +1,31 @@
 """
-Contact Force Recorder  —  headless simulation
+Contact Force Recorder  —  viewer + video recording
   · gear ratio 선택 가능 (--gear)
   · --material 로 재질 선택 (steel / al)
   · --torque 로 crank 출력 토크(N·m) 직접 지정 (ctrl = torque / gear)
   · --ctrl 로 raw control input 직접 지정 (--torque 와 동시 사용 불가)
   · contact force, crank RPM 기록
-  · CSV + PNG 저장
+  · CSV + PNG + MP4 저장
 
 Usage:
     python record_contact_force.py --gear 229 --material al --torque 2.0 --steps 10000
     python record_contact_force.py --gear 229 --torque 2.5 --steps 10000
-    python record_contact_force.py --gear 229 --ctrl 0.001 --steps 1000
+    python record_contact_force.py --gear 229 --ctrl 0.001 --steps 1000 --no-video
 """
 
 import argparse
 import os
 import csv
 import mujoco
+import mujoco.viewer
 import numpy as np
 import matplotlib.pyplot as plt
+
+try:
+    import imageio.v3 as iio
+    IMAGEIO_OK = True
+except ImportError:
+    IMAGEIO_OK = False
 
 # ── argument ──────────────────────────────────────────────────────────────
 parser = argparse.ArgumentParser()
@@ -33,6 +40,14 @@ parser.add_argument("--ctrl",     type=float, default=None,
                     help="Raw control input (mutually exclusive with --torque)")
 parser.add_argument("--steps",    type=int,   default=1000,
                     help="Number of simulation steps (default: 1000)")
+parser.add_argument("--no-video", action="store_true",
+                    help="동영상 저장 비활성화 (기본: 저장)")
+parser.add_argument("--video-fps", type=int, default=60,
+                    help="저장할 MP4 FPS (default: 60)")
+parser.add_argument("--video-width",  type=int, default=1280,
+                    help="동영상 가로 해상도 (default: 1280)")
+parser.add_argument("--video-height", type=int, default=720,
+                    help="동영상 세로 해상도 (default: 720)")
 args = parser.parse_args()
 
 if args.torque is not None and args.ctrl is not None:
@@ -129,24 +144,58 @@ forces_arr = np.zeros(args.steps)
 rpm_arr    = np.zeros(args.steps)
 ft_buf     = np.zeros(6)
 
-for step in range(args.steps):
-    data.ctrl[act_id] = args.ctrl
-    mujoco.mj_step(model, data)
+# ── 비디오 렌더러 초기화 ──────────────────────────────────────────────────
+frames = []
+if not args.no_video:
+    if not IMAGEIO_OK:
+        print("[video] imageio 미설치 → 비디오 저장 비활성화. "
+              "pip install \"imageio[ffmpeg]\" 로 설치하세요.")
+        args.no_video = True
+    else:
+        renderer = mujoco.Renderer(model,
+                                   height=args.video_height,
+                                   width=args.video_width)
+        # 캡처 간격: 시뮬 timestep 기준으로 목표 FPS에 맞게 자동 계산
+        capture_every = max(1, int(round(1.0 / (args.video_fps * model.opt.timestep))))
+        print(f"[video] {args.video_width}x{args.video_height}  "
+              f"{args.video_fps} fps  capture_every={capture_every} steps")
 
-    omega = data.qvel[dof_adr]          # rad/s (crank joint)
+with mujoco.viewer.launch_passive(model, data) as viewer:
+    viewer.cam.distance = 0.6
+    for step in range(args.steps):
+        data.ctrl[act_id] = args.ctrl
+        mujoco.mj_step(model, data)
 
-    steps_arr[step]  = step
-    times_arr[step]  = data.time
-    forces_arr[step] = contact_force_mag(ft_buf)
-    rpm_arr[step]    = omega * 60.0 / (2.0 * np.pi)
+        omega = data.qvel[dof_adr]          # rad/s (crank joint)
+
+        steps_arr[step]  = step
+        times_arr[step]  = data.time
+        forces_arr[step] = contact_force_mag(ft_buf)
+        rpm_arr[step]    = omega * 60.0 / (2.0 * np.pi)
+
+        viewer.sync()
+
+        # 프레임 캡처
+        if not args.no_video and step % capture_every == 0:
+            renderer.update_scene(data, camera=-1)   # -1: free camera
+            frames.append(renderer.render())
+# viewer 블록 종료 → 뷰어 자동 닫힘
+
+if not args.no_video:
+    renderer.close()
 
 # ── 결과 출력 ─────────────────────────────────────────────────────────────
-print("Done.")
-print(f"  peak  |F|       = {forces_arr.max():.4f} N")
+print("\nDone. ── Contact Force (normal) Summary ──────────────────────────")
+print(f"  peak  Fn          = {forces_arr.max():.4f} N")
 if (forces_arr > 0).any():
-    print(f"  mean  |F| (contact only) = {forces_arr[forces_arr > 0].mean():.4f} N")
+    contact_mask = forces_arr > 0
+    print(f"  mean  Fn (contact only)  = {forces_arr[contact_mask].mean():.4f} N")
+    print(f"  min   Fn (contact only)  = {forces_arr[contact_mask].min():.4f} N")
+    print(f"  std   Fn (contact only)  = {forces_arr[contact_mask].std():.4f} N")
+    print(f"  contact steps / total    = {contact_mask.sum()} / {args.steps}")
 else:
     print("  no contact detected")
+print("──────────────────────────────────────────────────────────────────")
 
 # 후반부 1/4 구간 평균 RPM (정상상태 추정)
 steady_start = int(args.steps * 0.75)
@@ -166,7 +215,20 @@ with open(csv_path, "w", newline="") as f:
 
 print(f"CSV  saved -> {csv_path}")
 
+# ── MP4 저장 ───────────────────────────────────────────────────────────────
+if not args.no_video and frames:
+    mp4_path = os.path.join(OUT_DIR, f"sim_{label}_{args.steps}steps.mp4")
+    try:
+        iio.imwrite(mp4_path, np.stack(frames), fps=args.video_fps, codec="libx264")
+        print(f"MP4  saved -> {mp4_path}  ({len(frames)} frames)")
+    except Exception as e:
+        print(f"[video] MP4 저장 실패: {e}")
+        print("[video] pip install \"imageio[ffmpeg]\" 확인 후 재시도하세요.")
+
 # ── PNG 저장 ───────────────────────────────────────────────────────────────
+plt.rcParams["font.family"]       = ["Malgun Gothic", "DejaVu Sans"]
+plt.rcParams["axes.unicode_minus"] = False
+
 fig, ax1 = plt.subplots(figsize=(13, 5))
 
 color_f = "tab:blue"
