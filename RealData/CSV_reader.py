@@ -3,12 +3,19 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-base_path = "/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/RealData/CSV"
+# ── 경로: 이 스크립트 위치 기준으로 CSV 폴더를 찾음 (OS 무관) ──
+base_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "CSV")
 
-# 예) Data_30.csv, Data_45.csv ... 만
-# csv_paths = sorted(glob.glob(os.path.join(base_path, "Data_*.csv")))
-# 필요하면 특정 2개만 고르기:
-csv_paths = [os.path.join(base_path,"Data_0.csv"), os.path.join(base_path,"Data_90.csv")]
+# Data_0.csv, Data_30.csv, ... Data_90.csv 등 모든 각도 자동 수집
+# 파일명에서 숫자를 추출해 오름차순 정렬
+def _angle_key(p):
+    m = re.search(r"Data_(-?\d+)", os.path.basename(p))
+    return int(m.group(1)) if m else 9999
+
+csv_paths = sorted(glob.glob(os.path.join(base_path, "Data_*.csv")), key=_angle_key)
+
+# 0°를 기준(reference)으로 사용
+REF_NAME = "Data_0"
 
 def load_and_clean(csv_path):
     # 인코딩: cp949 우선
@@ -94,55 +101,85 @@ if len(series) < 2:
 
 # --- 각 파일의 '첫 periodic peak' 위치를 찾아서 정렬(shift) 계산
 peak_x = {}
-degree = []
 for label, x, y in series:
     px = find_first_periodic_peak(x, y)
     peak_x[label] = px
     print(f"{label}: first periodic peak at NO = {px}")
-    degree.append(label)
-# 기준(reference) = 첫 번째 파일
-ref_label = series[0][0]
-ref_peak = peak_x[ref_label]
+
+# 기준(reference) = Data_90; 없으면 마지막 파일
+ref_label = REF_NAME if REF_NAME in peak_x else series[-1][0]
+ref_peak  = peak_x[ref_label]
 if ref_peak is None:
-    raise RuntimeError(f"기준 파일 {ref_label}에서 peak를 못 찾았습니다. thr(0.95)나 min_dist를 조정하세요.")
+    raise RuntimeError(f"기준 파일 {ref_label}에서 peak를 못 찾았습니다.")
+print(f"\n기준(reference): {ref_label}, peak NO = {ref_peak}")
 
-# --- 플롯: (왼쪽) 원본, (오른쪽) peak 정렬 후
+# ── 헬퍼: deg_str 추출 (Data_90_2 → "90deg_2" 로 구분) ──
+def deg_label(label):
+    m = re.search(r"Data_(-?\d+)(_\d+)?", label)
+    if m:
+        base   = f"{m.group(1)}deg"
+        suffix = m.group(2) or ""
+        return base + suffix
+    return label
+
+# ── 90° 데이터 꺼내기 ──
+ref_entry = next((s for s in series if s[0] == ref_label), None)
+if ref_entry is None:
+    raise RuntimeError(f"{ref_label} 데이터를 series에서 찾을 수 없습니다.")
+_, ref_x, ref_y = ref_entry
+
+# ── 90° 정렬용 x 계산 (ref 자신은 shift=0) ──
+def aligned_x(label, x):
+    if peak_x[label] is not None:
+        return x + (ref_peak - peak_x[label])
+    return x
+
+ref_x_al = aligned_x(ref_label, ref_x)
+
+# ── 비교 대상: 90° 제외한 나머지 ──
+others = [(lbl, x, y) for lbl, x, y in series if lbl != ref_label]
+
 plt.rcParams["font.family"] = ["DejaVu Sans", "sans-serif"]
-fig, (ax0, ax1) = plt.subplots(1, 2, figsize=(16, 5), sharey=True)
+saved = []
 
-colors = plt.cm.tab10(np.linspace(0, 1, len(series)))
+for lbl, x, y in others:
+    tag      = deg_label(lbl)        # e.g. "0deg"
+    ref_tag  = deg_label(ref_label)  # "90deg"
+    x_al     = aligned_x(lbl, x)
 
-for i, (label, x, y) in enumerate(series):
-    c = colors[i]
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5), sharey=True)
+    ax_raw, ax_al = axes
 
-    # 원본
-    ax0.plot(x, y, color=c, linewidth=1.8, label=label)
+    # ── (1) 원본 ──
+    ax_raw.plot(ref_x, ref_y, color="steelblue",  lw=2.2, label=f"{ref_tag} [REF]")
+    ax_raw.plot(x,     y,     color="tomato",      lw=1.8, ls="--", label=tag)
+    ax_raw.axvline(ref_peak, color="k", ls=":", lw=1.0, label="90deg peak")
+    ax_raw.set_title(f"Raw  |  {ref_tag} vs {tag}", fontsize=12)
+    ax_raw.set_xlabel("NO (sample index)")
+    ax_raw.set_ylabel("Force (N)")
+    ax_raw.legend(fontsize=9)
+    ax_raw.grid(True, alpha=0.25)
 
-    # 정렬: peak가 ref_peak에 오도록 x를 shift
-    if peak_x[label] is None:
-        x_aligned = x  # peak 못 찾으면 그대로
-    else:
-        shift = ref_peak - peak_x[label]
-        x_aligned = x + shift
+    # 최대값 텍스트
+    ax_raw.text(0.98, 0.97,
+                f"{ref_tag} peak: {ref_y.max():.0f} N\n{tag} peak: {y.max():.0f} N",
+                transform=ax_raw.transAxes, ha="right", va="top",
+                fontsize=9, bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.7))
 
-    ax1.plot(x_aligned, y, color=c, linewidth=1.8, label=label)
+    # ── (2) 위상 정렬 ──
+    ax_al.plot(ref_x_al, ref_y, color="steelblue",  lw=2.2, label=f"{ref_tag} [REF]")
+    ax_al.plot(x_al,     y,     color="tomato",      lw=1.8, ls="--", label=tag)
+    ax_al.axvline(ref_peak, color="k", ls=":", lw=1.0, label="ref peak")
+    ax_al.set_title(f"Phase-aligned to {ref_tag}  |  {ref_tag} vs {tag}", fontsize=12)
+    ax_al.set_xlabel("Aligned NO")
+    ax_al.legend(fontsize=9)
+    ax_al.grid(True, alpha=0.25)
 
-# 표시선(기준 peak 위치)
-ax0.axvline(ref_peak, color="k", linestyle="--", linewidth=1.0)
-ax1.axvline(ref_peak, color="k", linestyle="--", linewidth=1.0)
+    plt.tight_layout()
+    out_png = os.path.join(base_path, f"compare_0vs{tag}.png")
+    plt.savefig(out_png, dpi=300, bbox_inches="tight")
+    plt.close(fig)
+    saved.append(out_png)
+    print(f"  Saved: {out_png}  |  {ref_tag} peak={ref_y.max():.0f}N  {tag} peak={y.max():.0f}N")
 
-ax0.set_title("Unaligned (NO asc)")
-ax0.set_xlabel("NO (ascending)")
-ax0.set_ylabel("Value (N)")
-ax0.grid(True, alpha=0.25)
-ax0.legend()
-
-ax1.set_title(f"Phase-aligned to {ref_label} peak")
-ax1.set_xlabel("Aligned NO")
-ax1.grid(True, alpha=0.25)
-ax1.legend()
-
-plt.tight_layout()
-plt.savefig(os.path.join(base_path, f"multi_phase_aligned_{degree[0], degree[1]}.png"), dpi=300, bbox_inches="tight")
-plt.show()
-print("Saved: multi_phase_aligned.png")
+print(f"\nTotal {len(saved)} plots saved to {base_path}/")

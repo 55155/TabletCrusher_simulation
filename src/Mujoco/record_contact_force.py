@@ -96,8 +96,15 @@ dof_adr = model.jnt_dofadr[jnt_id]
 
 
 def contact_force_mag(ft_buf: np.ndarray) -> float:
-    """Impact_plate <-> tablet 접촉력 합력 크기 반환. 없으면 0.0"""
-    F_mag = 0.0
+    """Impact_plate <-> tablet 법선(normal) 방향 접촉력 반환. 없으면 0.0
+
+    mj_contactForce 는 contact-frame 기준 6D wrench 를 반환한다:
+      ft_buf[0]  : normal force  (법선 방향, 항상 양수)
+      ft_buf[1~2]: tangential force (마찰)
+      ft_buf[3~5]: moment
+    법선 분력만 사용하므로 월드 프레임 변환 불필요.
+    """
+    F_normal = 0.0
     for i in range(data.ncon):
         con = data.contact[i]
         b1  = model.geom_bodyid[con.geom1]
@@ -106,11 +113,8 @@ def contact_force_mag(ft_buf: np.ndarray) -> float:
                 (b1 == bid_tablet and b2 == bid_plate)):
             continue
         mujoco.mj_contactForce(model, data, i, ft_buf)
-        R        = con.frame.reshape(3, 3)
-        f_world  = R.T @ ft_buf[:3]
-        F_impact = f_world if b2 == bid_plate else -f_world
-        F_mag   += np.linalg.norm(F_impact)
-    return F_mag if np.isfinite(F_mag) else 0.0
+        F_normal += abs(ft_buf[0])   # normal force only
+    return F_normal if np.isfinite(F_normal) else 0.0
 
 
 # ── 시뮬레이션 ────────────────────────────────────────────────────────────
@@ -168,11 +172,11 @@ fig, ax1 = plt.subplots(figsize=(13, 5))
 color_f = "tab:blue"
 color_r = "tab:orange"
 
-ax1.plot(steps_arr, forces_arr, color=color_f, linewidth=0.8, label="|F| contact")
+ax1.plot(steps_arr, forces_arr, color=color_f, linewidth=0.8, label="Fn (normal)")
 ax1.fill_between(steps_arr, forces_arr, alpha=0.15, color=color_f)
 ax1.axhline(0, color="gray", linewidth=0.5, linestyle="--")
 ax1.set_xlabel("Step")
-ax1.set_ylabel("|F| [N]", color=color_f)
+ax1.set_ylabel("Fn normal [N]", color=color_f)
 ax1.tick_params(axis="y", labelcolor=color_f)
 
 ax2 = ax1.twinx()
@@ -183,8 +187,8 @@ ax2.tick_params(axis="y", labelcolor=color_r)
 ax1.set_title(
     f"Contact Force & Crank RPM  |  gear={args.gear}  material={args.material}  "
     f"{torque_label}  steps={args.steps}\n"
-    f"peak F={forces_arr.max():.1f} N  |  "
-    f"mean F(contact)={forces_arr[forces_arr>0].mean():.1f} N  |  "
+    f"peak Fn={forces_arr.max():.1f} N  |  "
+    f"mean Fn(contact)={forces_arr[forces_arr>0].mean():.1f} N  |  "
     f"RPM_steady={rpm_steady:.1f}  |  "
     f"dt={model.opt.timestep:.4f} s  |  total={times_arr[-1]:.2f} s"
     if (forces_arr > 0).any() else
