@@ -1,0 +1,96 @@
+<mujoco model="Crank_slider_system_V3_Pjoint_Posmod">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="base_link" content_type="model/stl" file="base_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="braket1_1" content_type="model/stl" file="braket1_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1" content_type="model/stl" file="braket2_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="motor_1" content_type="model/stl" file="motor_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="motor_shaft_1" content_type="model/stl" file="motor_shaft_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1" content_type="model/stl" file="Link1_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="Link2_1" content_type="model/stl" file="Link2_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1" content_type="model/stl" file="Link3_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="Shaft_1" content_type="model/stl" file="Shaft_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1" content_type="model/stl" file="Impact_Plate_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1" content_type="model/stl" file="Slider_jig_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="Wall_1" content_type="model/stl" file="Wall_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1" content_type="model/stl" file="Slider1_1.stl" scale="0.001 0.001 0.001"/>
+  </asset>
+
+  <worldbody>
+    <body name="base_link" pos="0 0 0">
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="base_link"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="braket1_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="braket2_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="motor_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="Slider_jig_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="Slider1_1"/>
+      <body name="Wall_1">
+        <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="Wall_1"/>
+      </body>
+    </body>
+    <body name="motor_shaft_1" pos="-0.063 0.085 0.05">
+      <inertial pos="0.014137 0.00923579 0" quat="0.510125 0.489666 -0.510125 0.489666" mass="0.0393299" diaginertia="5.34022e-06 5.28299e-06 2.05723e-06"/>
+      <joint name="Revolute 47" pos="0 0 0" axis="1 0 0"/>
+      <geom pos="0.063 -0.085 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="motor_shaft_1"/>
+      <geom pos="0.063 -0.085 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link1_1"/>
+      <body name="Link2_1" pos="0.0195 0.02 0">
+        <inertial pos="0.005 0.047 0" quat="0.707107 0.707107 0 0" mass="0.168204" diaginertia="0.000169 0.000165 7e-06"/>
+        <joint name="Revolute 49" pos="0 0 0" axis="-1 0 0"/>
+        <geom pos="0.0435 -0.105 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link2_1"/>
+        <body name="Link3_1" pos="0 0.094 0">
+          <inertial pos="-0.005 0.0111852 0" quat="0.707107 0.707107 0 0" mass="0.0459884" diaginertia="5e-06 4e-06 2e-06"/>
+          <joint name="Revolute 50" pos="0 0 0" axis="-1 0 0"/>
+          <geom pos="0.0435 -0.199 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1"/>
+        </body>
+      </body>
+    </body>
+    <!-- Shaft y 수정-->
+    <!-- origin : <body name="Shaft_1" pos="-0.0485 0.2265 0.05"> -->
+
+    <body name="Shaft_1" pos="-0.0485 0.2365 0.05">
+      <inertial pos="-0.0872505 0.00603152 0" quat="0.435342 0.435342 0.557205 0.557205" mass="0.200519" diaginertia="0.000126812 9.4474e-05 5.06617e-05"/>
+      <joint name="Slider 61" pos="0 0 0" axis="0 1 0" type="slide" actuatorfrcrange="-100 100"/>
+      <!-- <geom pos="0.0485 -0.226 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Shaft_1"/> -->
+      <geom pos="0.0485 -0.2365 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Shaft_1"/>
+      <geom pos="0.0485 -0.2365 -0.05" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Impact_Plate_1"/>
+    </body>
+  </worldbody>
+  
+  <actuator>
+    <motor name="torque_servo" joint="Revolute 47" ctrlrange="-10 10" ctrllimited="true" forcerange = "-3 3" gear = ".1"/>
+    <!-- <position name="R2" joint="Revolute 49" ctrlrange = "-3.14 3.14"/>
+    <position name="R3" joint="Revolute 50" ctrlrange = "-10 10"/> -->
+    <!-- <position name="position_servo" joint="Revolute 47" ctrlrange="-100 100" ctrllimited="true" kp="100"/>
+     <velocity name="velocity_servo" joint="Revolute 47" kv="10"/> -->
+  </actuator>
+
+  <!-- 
+    solimp (임피던스)
+      **"얼마나 세게 붙일까?"**를 결정합니다.​
+
+      레고 블록을 생각해보세요:
+
+      0.99에 가까운 값: 레고를 딱! 세게 꽂은 것처럼 매우 단단하게 붙습니다​
+
+      0.5 같은 작은 값: 찰흙으로 살짝 붙인 것처럼 느슨하게 붙습니다​
+
+      solimp="0.9999 0.9999 0.001"처럼 앞 두 숫자를 1에 가깝게 하면 제약이 매우 강해집니다.​
+
+    solref (참조)
+      **"얼마나 빨리, 얼마나 탄력적으로 반응할까?"**를 결정합니다.​
+
+      고무줄을 생각해보세요:
+
+      첫 번째 숫자(시간 상수): 고무줄이 얼마나 빨리 잡아당기는지입니다. 숫자가 작을수록 빨리 반응합니다 (더 강한 용수철)​
+
+      두 번째 숫자(댐핑 비율): 고무줄이 통통 튀는지, 조용히 멈추는지입니다. 보통 1로 설정하면 적당히 멈춥니다​
+
+      solref="0.001 1"처럼 설정하면 빠르고 안정적으로 반응합니다.​ -->
+      
+  <equality>
+    <weld body1="Shaft_1" body2 = "Link3_1" anchor = "0 .00 0" solref = "0.001 1" solimp = "0.99 0.999 0.001"/>
+    <!-- <weld body1="Shaft_1" body2 = "Link3_1" anchor = "0 .05 0" solref = "0.001 1" solimp = "0.9999 0.9999 0.001"/> -->
+
+  </equality>
+</mujoco>

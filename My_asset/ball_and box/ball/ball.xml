@@ -1,0 +1,23 @@
+<mujoco model="ball">
+  <default>
+    <default class="visual1">
+      <geom group="2" type="mesh" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision1">
+      <geom group="3" type="mesh"/>
+    </default>
+  </default>
+  <asset>
+    <material name="Steel_-_Satin" specular="0.5" shininess="0.5" rgba="0.627451 0.627451 0.627451 1.0"/>
+    <mesh file="/home/seongjin/Downloads/test/ball/ball.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/ball/ball_collision_0.obj" scale="0.001 0.001 0.001"/>
+  </asset>
+  <worldbody>
+    <body name="ball" pos="0.3 -0.3 0.1">
+      <joint type="free"/>
+      <inertial mass="0.0001" pos="0 0 0" diaginertia="0.01 0.01 0.01"/>
+      <geom material="Steel_-_Satin" mesh="ball" class="visual1"/>
+      <geom mesh="ball_collision_0" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.9483424508673266 0.2905969602471916 0.9440760676412225 1" class="collision1"/>
+    </body>
+  </worldbody>
+</mujoco>

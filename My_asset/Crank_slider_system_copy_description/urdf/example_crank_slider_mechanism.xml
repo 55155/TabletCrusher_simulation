@@ -1,0 +1,47 @@
+<mujoco model="crank-slider">
+  <!-- visual properties associated with the crank-slider mechanism -->
+  <visual>
+    <scale slidercrank=".1"/>
+    <rgba slidercrank="0.5 0.4 0.8 1" crankbroken="0.0 0.6 0.2 1"/>
+  </visual>
+
+  <!-- defaults for readability (same as MuJoCo example) -->
+  <default>
+    <position ctrllimited="true" ctrlrange="-.1 .1" kp="30"/>
+    <default class="joint">
+      <geom type="cylinder" size=".006" fromto="0 0 0 0 0 .05" rgba=".9 .6 1 1"/>
+    </default>
+    <default class="slidersite">
+      <site type="cylinder" size=".01 .015" rgba="1 0 0 1" />
+    </default>
+    <default class="cranksite">
+      <site size=".012" rgba="0 0 1 1" />
+    </default>
+  </default>
+
+  <worldbody>
+    <light pos="0 0 1"/>
+    <geom type="plane" size=".5 .5 .01" pos="0 0 -.05"/>
+    <!-- keep the original parent slider site (unused in crank-slider) -->
+    <site name="slidersite" class="slidersite" pos="0 -.1 0" zaxis="1 .5 0"/>
+    <body>
+      <joint damping=".1"/>
+      <geom class="joint"/>
+      <geom type="capsule" size=".01" fromto="0 0 0 .2 0 0"/>
+      <site name="cranksite" class="cranksite" pos=".1 0 0"/>
+      <site name="cranksite2" class="cranksite" pos=".2 0 0"/>
+      <!-- child body carries the slider site for crank-slider configuration -->
+      <body pos=".15 0 0">
+        <joint damping=".1"/>
+        <geom class="joint"/>
+        <geom type="capsule" size=".01" fromto="0 -.15 0 0 0 0"/>
+        <site name="slidersite2" class="slidersite" pos=".02 -.1 0" zaxis="1 2 0"/>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <!-- Crank-slider: slider site attached to the child -->
+    <position name="crank-slider" cranksite="cranksite2" slidersite="slidersite2" cranklength=".06"/>
+  </actuator>
+</mujoco>

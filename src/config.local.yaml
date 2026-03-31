@@ -1,0 +1,28 @@
+# config.yaml
+# This file contains configuration settings for the simulation environment.
+
+
+simulation:
+  time_step: 0.01
+  max_steps: 1000
+  gravity: [0.0, 0.0, -9.81]
+  enable_collision: true
+
+
+My_robot:
+  urdf_path: "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/src/My_robot/"
+
+
+
+file_path:
+  project: "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/"
+  src : "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/src/"
+  video: "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/video/"
+  asset: "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/"
+
+macOS:
+  urdf_path: "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/src/My_robot/"
+  project: "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/"
+  src : "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/src/"
+  video: "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/video/"
+  asset: "/Users/csrc_autonomouslab/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/"

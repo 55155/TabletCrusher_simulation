@@ -1,0 +1,13 @@
+<mujoco model="SAMPLEBAG">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="base_link" content_type="model/stl" file="base_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="base_link_Mirror__1" content_type="model/stl" file="base_link_Mirror__1.stl" scale=".001 .001 .001"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="base_link"/>
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="base_link_Mirror__1"/>
+  </worldbody>
+</mujoco>

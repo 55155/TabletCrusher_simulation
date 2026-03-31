@@ -1,0 +1,41 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"braket1" [label="braket1"];
+"braket2" [label="braket2"];
+"motor" [label="motor"];
+"motor_shaft" [label="motor_shaft"];
+"Link1" [label="Link1"];
+"Link2" [label="Link2"];
+"Link3" [label="Link3"];
+"Shaft" [label="Shaft"];
+"Impact_Plate" [label="Impact_Plate"];
+"Slider1" [label="Slider1"];
+"Slider_jig" [label="Slider_jig"];
+"Wall" [label="Wall"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "Rigid 44" [label="xyz: 0.11 0.01 -0.185 \nrpy: 0 -0 0"]
+"Rigid 44" -> "braket1"
+"braket1" -> "Rigid 45" [label="xyz: 0 0.01 0.025 \nrpy: 0 -0 0"]
+"Rigid 45" -> "braket2"
+"braket2" -> "Rigid 46" [label="xyz: 0 0.03 -0.0055 \nrpy: 0 -0 0"]
+"Rigid 46" -> "motor"
+"motor" -> "Revolute 47" [label="xyz: 0 0 0.0025 \nrpy: 0 -0 0"]
+"Revolute 47" -> "motor_shaft"
+"motor_shaft" -> "Rigid 48" [label="xyz: 0 0 0.0195 \nrpy: 0 -0 0"]
+"Rigid 48" -> "Link1"
+"Link1" -> "Revolute 49" [label="xyz: 0.02 0 0 \nrpy: 0 -0 0"]
+"Revolute 49" -> "Link2"
+"Link2" -> "Revolute 50" [label="xyz: 0.094 0 0 \nrpy: 0 -0 0"]
+"Revolute 50" -> "Link3"
+"Link3" -> "Rigid 51" [label="xyz: 0.027 0 -0.005 \nrpy: 0 -0 0"]
+"Rigid 51" -> "Shaft"
+"Shaft" -> "Rigid 53" [label="xyz: 0.1 0 0 \nrpy: 0 -0 0"]
+"Rigid 53" -> "Impact_Plate"
+"Shaft" -> "Slider 60" [label="xyz: 0.0105 0 0 \nrpy: 0 -0 0"]
+"Slider 60" -> "Slider1"
+"Slider1" -> "Rigid 59" [label="xyz: 0.0075 -0.007 0.013 \nrpy: 0 -0 0"]
+"Rigid 59" -> "Slider_jig"
+"base_link" -> "Rigid 55" [label="xyz: 0.394243 0.01 -0.16 \nrpy: 0 -0 0"]
+"Rigid 55" -> "Wall"
+}

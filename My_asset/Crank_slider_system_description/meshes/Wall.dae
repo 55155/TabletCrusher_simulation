@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+	<asset>
+		<contributor>
+			<author> SimLab Soft http://www.simLab-soft.com </author>
+			<authoring_tool>SimLab Collada Exporter for Fusion 360</authoring_tool>
+		</contributor>
+		<created>2025-08-01T16:49:58</created>
+		<modified>2025-08-01T16:49:58</modified>
+		<unit meter="1.000000000000000" name="Meter"/>
+		<up_axis>Z_UP</up_axis>
+	</asset>
+	<library_visual_scenes>
+		<visual_scene id="Scene" name="Scene">
+			<node>
+				<matrix> 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </matrix>
+				<node  id="ID0" name="Camera_2">
+					<matrix> 1 0 0 0.394243 0 0 -1 -0.32 0 1 0 0.05 0 0 0 1 </matrix>
+					<instance_camera url="#ID1" />
+				</node>
+				<node  id="ID2" name="Crank_slider_system_v4">
+					<matrix> 0.01 0 0 0 0 0 -0.01 0 0 0.01 0 0 0 0 0 1 </matrix>
+					<node  id="ID3" name="Wall">
+						<matrix> 0 1 0 35.1487 -1 0 0 11.4487 0 0 1 -27.3294 0 0 0 1 </matrix>
+						<node  id="ID4" name="&#xbcf8;&#xccb4;1">
+							<matrix> 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </matrix>
+							<instance_geometry url="#ID5">
+								<bind_material>
+									<technique_common>
+										<instance_material symbol="PSOLRGB-175-175-175" target="#ID6">
+											<bind_vertex_input semantic="UVSET0" input_semantic="TEXCOORD" input_set="0" />
+										</instance_material>
+									</technique_common>
+								</bind_material>
+							</instance_geometry>
+						</node>
+					</node>
+				</node>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<library_cameras>
+		<camera id="ID1" name="Camera_2">
+			<optics>
+				<technique_common>
+					<perspective>
+						<yfov>45</yfov>
+						<aspect_ratio>1.33333</aspect_ratio>
+						<znear>0.00544666</znear>
+						<zfar>54.4666</zfar>
+					</perspective>
+				</technique_common>
+			</optics>
+			<extra>
+				<technique  >
+					<camera_target type="float">0.394243 0.16 0.05</camera_target>
+				</technique>
+			</extra>
+		</camera >
+	</library_cameras>
+	<library_geometries>
+		<geometry id="ID5" name="geo_0">
+			<mesh>
+				<source id="geo_0-Position">
+					<float_array count="126" id="geo_0-Position-array">9.24872 2.2 17.3294 9.44872 2.4 17.3294 9.24872 2.2 5.32938 9.44872 2.4 5.32938 9.44872 2.4 5.32938 9.44872 2.4 17.3294 9.44872 7.35132 5.32938 9.44872 7.35132 17.3294 9.24872 2.2 17.3294 9.24872 2.2 5.32938 2.44872 2.2 17.3294 2.44872 2.2 5.32938 2.44872 1.2 5.32938 2.44872 1.2 17.3294 2.44872 2.2 5.32938 2.44872 2.2 17.3294 10.4487 7.35132 17.3294 10.4487 7.35132 5.32938 9.44872 7.35132 17.3294 9.44872 7.35132 5.32938 10.4487 7.35132 17.3294 9.44872 2.4 17.3294 10.4487 1.2 17.3294 9.24872 2.2 17.3294 2.44872 1.2 17.3294 2.44872 2.2 17.3294 9.44872 7.35132 17.3294 10.4487 1.2 5.32938 10.4487 1.2 17.3294 2.44872 1.2 5.32938 2.44872 1.2 17.3294 9.44872 7.35132 5.32938 10.4487 7.35132 5.32938 9.44872 2.4 5.32938 10.4487 1.2 5.32938 9.24872 2.2 5.32938 2.44872 1.2 5.32938 2.44872 2.2 5.32938 10.4487 7.35132 5.32938 10.4487 7.35132 17.3294 10.4487 1.2 5.32938 10.4487 1.2 17.3294 </float_array>
+					<technique_common>
+						<accessor count="42" source="#geo_0-Position-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="geo_0-Normals">
+					<float_array count="126" id="geo_0-Normals-array">-0.707107 0.707107 0 -0.707107 0.707107 0 -0.707107 0.707107 0 -0.707107 0.707107 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 1 0 0 1 0 0 1 0 0 1 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 1 0 0 1 0 0 1 0 0 1 0 0 </float_array>
+					<technique_common>
+						<accessor count="42" source="#geo_0-Normals-array" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="geo_0-Vertex">
+					<input semantic="POSITION" source="#geo_0-Position"/>
+				</vertices>
+				<triangles count="24" material="PSOLRGB-175-175-175">
+					<input offset="0" semantic="VERTEX" source="#geo_0-Vertex"/>
+					<input offset="1" semantic="NORMAL"  source="#geo_0-Normals"/>
+					<p>0 0 1 1 2 2 2 2 1 1 3 3 4 4 5 5 6 6 6 6 5 5 7 7 8 8 9 9 10 10 10 10 9 9 11 11 12 12 13 13 14 14 14 14 13 13 15 15 16 16 17 17 18 18 18 18 17 17 19 19 20 20 21 21 22 22 22 22 21 21 23 23 22 22 23 23 24 24 24 24 23 23 25 25 20 20 26 26 21 21 27 27 28 28 29 29 29 29 28 28 30 30 31 31 32 32 33 33 33 33 32 32 34 34 33 33 34 34 35 35 35 35 34 34 36 36 35 35 36 36 37 37 38 38 39 39 40 40 40 40 39 39 41 41 </p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_materials>
+		<material id="ID6" name="PSOLRGB-175-175-175">
+			<instance_effect url="#ID7"/>
+		</material>
+	</library_materials>
+	<library_effects>
+		<effect id="ID7">
+			<profile_COMMON>
+				<technique sid="standard">
+					<phong>
+						<emission><color>0 0 0 1</color></emission>
+						<ambient><color>0 0 0 1</color></ambient>
+						<diffuse>
+							<color>0.7 0.7 0.7 1</color>
+						</diffuse>
+						<specular><color>0 0 0 1</color></specular>
+						<transparent opaque="A_ONE"><color>1.0 1.0 1.0 1.0</color></transparent>
+						<transparency><float>1</float></transparency>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<scene>
+		<instance_visual_scene url="#Scene"/>
+	</scene>
+</COLLADA>

@@ -1,0 +1,1 @@
+obj2mjcf --obj-dir /home/haegu/capex_ws/mj_sim/assets/test --save-mjcf --decompose --coacd-args.preprocess-resolution 70 --coacd-args.threshold 0.03

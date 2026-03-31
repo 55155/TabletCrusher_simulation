@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="TEST_rigidbody" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="../urdf/materials.xacro" />
+<xacro:include filename="../urdf/TEST_rigidbody.trans" />
+<xacro:include filename="../urdf/TEST_rigidbody.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.005 0.05000000000000001 -0.0050000000000450864" rpy="0 0 0"/>
+    <mass value="0.14298462441732945"/>
+    <inertia ixx="0.000112" iyy="6e-06" izz="0.000108" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+</robot>

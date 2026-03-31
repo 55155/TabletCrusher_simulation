@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<robot name="TEST_LINK_sizeup" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="../urdf/materials.xacro" />
+<xacro:include filename="../urdf/TEST_LINK_sizeup.trans" />
+<xacro:include filename="../urdf/TEST_LINK_sizeup.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.5326644002736791 0.1 0.9698855303283307" rpy="0 0 0"/>
+    <mass value="2987.446009322719"/>
+    <inertia ixx="943.969904" iyy="1184.179671" izz="260.126074" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <!--0.001 means, mm -> m-->
+      <mesh filename="../meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="../meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+</robot>

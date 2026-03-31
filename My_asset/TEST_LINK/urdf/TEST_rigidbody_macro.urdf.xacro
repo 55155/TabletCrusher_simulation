@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<robot name="TEST_rigidbody" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="TEST_rigidbody" params="prefix">
+
+<xacro:include filename="$(find TEST_rigidbody_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find TEST_rigidbody_description)/urdf/TEST_rigidbody.trans" />
+<xacro:include filename="$(find TEST_rigidbody_description)/urdf/TEST_rigidbody.gazebo" />
+<link name="${prefix}base_link"/>
+
+</xacro:macro>
+</robot>

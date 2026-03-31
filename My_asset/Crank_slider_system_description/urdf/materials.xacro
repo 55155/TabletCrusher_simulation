@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<robot name="Crank_slider_system" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<material name="Crank_slider_system_silver">
+  <color rgba="0.700 0.700 0.700 1.000"/>
+</material>
+
+<material name="Crank_slider_system_color0">
+  <color rgba="0.145 0.133 0.133 1.0"/>
+</material>
+
+<material name="Crank_slider_system_color1">
+  <color rgba="0.686 0.686 0.686 0.098"/>
+</material>
+
+</robot>

@@ -1,0 +1,41 @@
+[0.005s] Invoking command in '/home/seongjin/Downloads/TEST_rigidbody_description/build/TEST_rigidbody_description': CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake /home/seongjin/Downloads/TEST_rigidbody_description -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/seongjin/Downloads/TEST_rigidbody_description/install/TEST_rigidbody_description
+[0.017s] [0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[0.018s]   Compatibility with CMake < 2.8.12 will be removed from a future version of
+[0.018s]   CMake.
+[0.018s] 
+[0.018s]   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+[0.018s]   CMake that the project does not need compatibility with older versions.
+[0.018s] 
+[0.018s] [0m
+[0.070s] -- The C compiler identification is GNU 11.4.0
+[0.120s] -- The CXX compiler identification is GNU 11.4.0
+[0.125s] -- Detecting C compiler ABI info
+[0.160s] -- Detecting C compiler ABI info - done
+[0.164s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.164s] -- Detecting C compile features
+[0.165s] -- Detecting C compile features - done
+[0.167s] -- Detecting CXX compiler ABI info
+[0.199s] -- Detecting CXX compiler ABI info - done
+[0.203s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.203s] -- Detecting CXX compile features
+[0.203s] -- Detecting CXX compile features - done
+[0.208s] [31mCMake Error at CMakeLists.txt:10 (find_package):
+[0.208s]   By not providing "Findcatkin.cmake" in CMAKE_MODULE_PATH this project has
+[0.208s]   asked CMake to find a package configuration file provided by "catkin", but
+[0.208s]   CMake did not find one.
+[0.208s] 
+[0.208s]   Could not find a package configuration file provided by "catkin" with any
+[0.208s]   of the following names:
+[0.208s] 
+[0.208s]     catkinConfig.cmake
+[0.208s]     catkin-config.cmake
+[0.208s] 
+[0.208s]   Add the installation prefix of "catkin" to CMAKE_PREFIX_PATH or set
+[0.208s]   "catkin_DIR" to a directory containing one of the above files.  If "catkin"
+[0.208s]   provides a separate development package or SDK, be sure it has been
+[0.208s]   installed.
+[0.208s] 
+[0.208s] [0m
+[0.208s] -- Configuring incomplete, errors occurred!
+[0.208s] See also "/home/seongjin/Downloads/TEST_rigidbody_description/build/TEST_rigidbody_description/CMakeFiles/CMakeOutput.log".
+[0.209s] Invoked command in '/home/seongjin/Downloads/TEST_rigidbody_description/build/TEST_rigidbody_description' returned '1': CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake /home/seongjin/Downloads/TEST_rigidbody_description -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/seongjin/Downloads/TEST_rigidbody_description/install/TEST_rigidbody_description

@@ -1,0 +1,66 @@
+<mujoco model="empty_box">
+  <default>
+    <default class="visual2">
+      <geom group="2" type="mesh" contype="0" conaffinity="0"/>
+    </default>
+    <default class="collision2">
+      <geom group="3" type="mesh"/>
+    </default>
+  </default>
+  <asset>
+    <material name="Steel_-_Satin2" specular="0.5" rgba="0.627451 0.627451 0.627451 1.0"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_0.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_2.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_3.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_4.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_5.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_6.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_7.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_8.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_9.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_10.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_11.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_12.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_13.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_14.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_15.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_16.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_17.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_18.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_19.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_20.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_21.obj" scale="0.001 0.001 0.001"/>
+    <mesh file="/home/seongjin/Downloads/test/empty_box/empty_box_collision_22.obj" scale="0.001 0.001 0.001"/>
+  </asset>
+  <worldbody>
+    <body name="empty_box" pos="0.3 -0.5 0">
+      <joint type="free"/>
+      <geom material="Steel_-_Satin2" mesh="empty_box" class="visual2"/>
+      <geom mesh="empty_box_collision_0" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.16548280273097937 0.6115624036152839 0.22257894084434393 1" class="collision2"/>
+      <geom mesh="empty_box_collision_1" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.6217827467924142 0.9808848631185778 0.3591586552933258 1" class="collision2"/>
+      <geom mesh="empty_box_collision_2" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.4448626151752604 0.5687181782635936 0.9490032907642686 1" class="collision2"/>
+      <geom mesh="empty_box_collision_3" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.29730406725968817 0.9019272510736704 0.8656097693020329 1" class="collision2"/>
+      <geom mesh="empty_box_collision_4" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.10539589470673782 0.06534923750454746 0.9070553062356406 1" class="collision2"/>
+      <geom mesh="empty_box_collision_5" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.9662833075534359 0.8993090144336255 0.4391182592716395 1" class="collision2"/>
+      <geom mesh="empty_box_collision_6" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.8733633750153083 0.7266112320961049 0.9168383478120005 1" class="collision2"/>
+      <geom mesh="empty_box_collision_7" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.4559584669494523 0.8774912614386928 0.0061204158089090965 1" class="collision2"/>
+      <geom mesh="empty_box_collision_8" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.2802566305263626 0.3031708466049323 0.7951078339934398 1" class="collision2"/>
+      <geom mesh="empty_box_collision_9" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.19522734748584403 0.4947082195541552 0.7644004184958425 1" class="collision2"/>
+      <geom mesh="empty_box_collision_10" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.6535899943022443 0.13790481997271553 0.4267139394654752 1" class="collision2"/>
+      <geom mesh="empty_box_collision_11" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.6306866425889781 0.2369788459276071 0.545071819588209 1" class="collision2"/>
+      <geom mesh="empty_box_collision_12" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.35816794575481736 0.13753278846352845 0.9303596142483612 1" class="collision2"/>
+      <geom mesh="empty_box_collision_13" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.34168352438453253 0.3047627942836444 0.32009161222852955 1" class="collision2"/>
+      <geom mesh="empty_box_collision_14" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.5256673981543794 0.6922602444637128 0.07100376487467297 1" class="collision2"/>
+      <geom mesh="empty_box_collision_15" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.587238425767195 0.21664760745952616 0.011958713639552698 1" class="collision2"/>
+      <geom mesh="empty_box_collision_16" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.14578563960938573 0.7557257162214773 0.4740228165449889 1" class="collision2"/>
+      <geom mesh="empty_box_collision_17" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.40577251033693695 0.4538533604299414 0.44196582168984433 1" class="collision2"/>
+      <geom mesh="empty_box_collision_18" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.7370424895272065 0.8170868695766178 0.27529228508281445 1" class="collision2"/>
+      <geom mesh="empty_box_collision_19" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.9230813443241825 0.49142222447904527 0.5729377492076092 1" class="collision2"/>
+      <geom mesh="empty_box_collision_20" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.9773243551740105 0.9253960610480145 0.820217366896148 1" class="collision2"/>
+      <geom mesh="empty_box_collision_21" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.6211694487808986 0.25299690556721843 0.7159908251297742 1" class="collision2"/>
+      <geom mesh="empty_box_collision_22" friction="0.7 0.7 0.7" condim="6"  solimp="0.95 0.99 0.001" solref="0.004 1" rgba="0.5378478206720504 0.48126809351745814 0.18654761344299642 1" class="collision2"/>
+    </body>
+  </worldbody>
+</mujoco>

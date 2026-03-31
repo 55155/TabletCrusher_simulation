@@ -1,0 +1,59 @@
+<!-- mass 와 inertia 가 없네.. -->
+<mujoco>
+    <asset>
+            <!-- <mesh name="Tablet_posmod" file="./Tablet_posmod.obj" scale="0.001 0.001 0.001"/> -->
+            <mesh name="Tablet_posmod_collision_(1)" file="./Tablet_posmod_collision_(1).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(10)" file="./Tablet_posmod_collision_(10).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(11)" file="./Tablet_posmod_collision_(11).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(12)" file="./Tablet_posmod_collision_(12).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(13)" file="./Tablet_posmod_collision_(13).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(14)" file="./Tablet_posmod_collision_(14).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(15)" file="./Tablet_posmod_collision_(15).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(16)" file="./Tablet_posmod_collision_(16).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(17)" file="./Tablet_posmod_collision_(17).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(18)" file="./Tablet_posmod_collision_(18).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(19)" file="./Tablet_posmod_collision_(19).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(2)" file="./Tablet_posmod_collision_(2).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(3)" file="./Tablet_posmod_collision_(3).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(4)" file="./Tablet_posmod_collision_(4).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(5)" file="./Tablet_posmod_collision_(5).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(6)" file="./Tablet_posmod_collision_(6).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(7)" file="./Tablet_posmod_collision_(7).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(8)" file="./Tablet_posmod_collision_(8).obj" scale="0.001 0.001 0.001"/>
+            <mesh name="Tablet_posmod_collision_(9)" file="./Tablet_posmod_collision_(9).obj" scale="0.001 0.001 0.001"/>
+
+    </asset>
+    <worldbody>
+        <body name="tablet" pos="-0.06 0.33947925 0.03555163" quat="0.70710678 0.70710678 0 0">
+            <!-- <joint type="slide" axis="0 0 1" name="tablet_prismatic"/> -->
+            <!-- <geom rgba="0.650 0.350 0.350 1" type="mesh" mesh="Tablet_posmod"/> -->
+            <geom rgba="0.675 0.465 0.325 1" type="mesh" mesh="Tablet_posmod_collision_(1)"/>
+            <geom rgba="0.700 0.620 0.300 1" type="mesh" mesh="Tablet_posmod_collision_(10)"/>
+            <geom rgba="0.635 0.725 0.275 1" type="mesh" mesh="Tablet_posmod_collision_(11)"/>
+            <geom rgba="0.450 0.750 0.250 1" type="mesh" mesh="Tablet_posmod_collision_(12)"/>
+            <geom rgba="0.225 0.775 0.225 1" type="mesh" mesh="Tablet_posmod_collision_(13)"/>
+            <geom rgba="0.200 0.800 0.440 1" type="mesh" mesh="Tablet_posmod_collision_(14)"/>
+            <geom rgba="0.175 0.825 0.695 1" type="mesh" mesh="Tablet_posmod_collision_(15)"/>
+            <geom rgba="0.150 0.710 0.850 1" type="mesh" mesh="Tablet_posmod_collision_(16)"/>
+            <geom rgba="0.125 0.425 0.875 1" type="mesh" mesh="Tablet_posmod_collision_(17)"/>
+            <geom rgba="0.100 0.100 0.900 1" type="mesh" mesh="Tablet_posmod_collision_(18)"/>
+
+            <geom rgba="0.770 0.050 0.950 1" type="mesh" mesh="Tablet_posmod_collision_(2)"/>
+            <geom rgba="0.975 0.025 0.785 1" type="mesh" mesh="Tablet_posmod_collision_(3)"/>
+            <geom rgba="1.000 0.000 0.400 1" type="mesh" mesh="Tablet_posmod_collision_(4)"/>
+            <geom rgba="0.650 0.350 0.350 1" type="mesh" mesh="Tablet_posmod_collision_(5)"/>
+            <geom rgba="0.675 0.465 0.325 1" type="mesh" mesh="Tablet_posmod_collision_(6)"/>
+            <geom rgba="0.700 0.620 0.300 1" type="mesh" mesh="Tablet_posmod_collision_(7)"/>
+            <geom rgba="0.635 0.725 0.275 1" type="mesh" mesh="Tablet_posmod_collision_(8)"/>
+            <geom rgba="0.450 0.750 0.250 1" type="mesh" mesh="Tablet_posmod_collision_(9)"/>
+            <geom rgba="0.415 0.075 0.925 1" type="mesh" mesh="Tablet_posmod_collision_(19)"/>
+            <geom rgba="0.415 0.075 0.925 1" type="mesh" mesh="Tablet_posmod_collision_(19)"/>
+            <geom rgba="0.415 0.075 0.925 1" type="mesh" mesh="Tablet_posmod_collision_(19)"/>
+
+        </body>
+
+    </worldbody>
+    <!-- <equality>
+        <weld body1="Tablet" body2="segment" anchor = "0 0 0"/>
+    </equality> -->
+</mujoco>

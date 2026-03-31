@@ -1,0 +1,883 @@
+<mujoco model="Crank_slider_system_V3_Pjoint">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="Impact_Plate_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(10)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(10).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(11)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(11).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(12)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(12).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(13)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(13).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(14)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(14).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(15)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(15).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(2).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(3)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(3).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(4)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(4).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(5)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(5).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(6)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(6).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(7)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(7).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(8)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(8).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Impact_Plate_1_collision_(9)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Impact_Plate_1_collision_(9).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link1_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link1_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link1_1_collision_(2).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1_collision_(3)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link1_1_collision_(3).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1_collision_(4)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link1_1_collision_(4).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1_collision_(5)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link1_1_collision_(5).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1_collision_(6)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link1_1_collision_(6).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1_collision_(7)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link1_1_collision_(7).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link1_1_collision_(8)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link1_1_collision_(8).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link2_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link2_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link2_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link2_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(10)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(10).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(11)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(11).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(12)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(12).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(13)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(13).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(14)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(14).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(15)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(15).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(16)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(16).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(17)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(17).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(18)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(18).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(19)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(19).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(2).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(20)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(20).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(21)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(21).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(22)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(22).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(23)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(23).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(24)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(24).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(25)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(25).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(26)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(26).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(27)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(27).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(3)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(3).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(4)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(4).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(5)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(5).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(6)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(6).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(7)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(7).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(8)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(8).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Link3_1_collision_(9)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Link3_1_collision_(9).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Shaft_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Shaft_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Shaft_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Shaft_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Shaft_1_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Shaft_1_collision_(2).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Shaft_1_collision_(3)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Shaft_1_collision_(3).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(10)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(10).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(100)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(100).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(101)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(101).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(102)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(102).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(103)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(103).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(104)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(104).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(105)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(105).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(106)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(106).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(107)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(107).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(108)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(108).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(109)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(109).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(11)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(11).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(110)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(110).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(111)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(111).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(112)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(112).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(113)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(113).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(114)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(114).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(115)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(115).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(116)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(116).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(117)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(117).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(118)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(118).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(119)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(119).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(12)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(12).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(120)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(120).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(121)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(121).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(122)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(122).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(123)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(123).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(124)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(124).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(125)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(125).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(126)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(126).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(127)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(127).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(128)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(128).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(129)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(129).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(13)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(13).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(130)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(130).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(131)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(131).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(132)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(132).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(133)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(133).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(134)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(134).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(135)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(135).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(136)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(136).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(137)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(137).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(138)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(138).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(139)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(139).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(14)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(14).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(140)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(140).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(141)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(141).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(142)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(142).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(143)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(143).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(144)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(144).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(145)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(145).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(146)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(146).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(147)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(147).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(148)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(148).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(149)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(149).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(15)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(15).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(150)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(150).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(151)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(151).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(152)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(152).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(153)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(153).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(154)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(154).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(155)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(155).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(156)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(156).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(157)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(157).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(158)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(158).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(159)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(159).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(16)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(16).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(160)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(160).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(161)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(161).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(162)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(162).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(163)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(163).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(164)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(164).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(165)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(165).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(166)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(166).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(167)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(167).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(168)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(168).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(169)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(169).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(17)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(17).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(170)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(170).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(171)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(171).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(172)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(172).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(173)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(173).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(174)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(174).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(175)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(175).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(176)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(176).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(177)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(177).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(178)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(178).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(179)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(179).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(18)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(18).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(180)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(180).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(181)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(181).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(182)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(182).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(183)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(183).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(184)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(184).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(19)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(19).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(2).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(20)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(20).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(21)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(21).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(22)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(22).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(23)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(23).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(24)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(24).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(25)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(25).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(26)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(26).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(27)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(27).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(28)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(28).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(29)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(29).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(3)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(3).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(30)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(30).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(31)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(31).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(32)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(32).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(33)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(33).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(34)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(34).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(35)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(35).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(36)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(36).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(37)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(37).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(38)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(38).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(39)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(39).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(4)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(4).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(40)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(40).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(41)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(41).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(42)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(42).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(43)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(43).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(44)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(44).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(45)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(45).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(46)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(46).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(47)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(47).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(48)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(48).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(49)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(49).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(5)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(5).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(50)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(50).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(51)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(51).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(52)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(52).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(53)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(53).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(54)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(54).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(55)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(55).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(56)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(56).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(57)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(57).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(58)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(58).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(59)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(59).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(6)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(6).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(60)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(60).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(61)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(61).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(62)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(62).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(63)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(63).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(64)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(64).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(65)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(65).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(66)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(66).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(67)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(67).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(68)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(68).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(69)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(69).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(7)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(7).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(70)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(70).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(71)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(71).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(72)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(72).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(73)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(73).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(74)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(74).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(75)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(75).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(76)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(76).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(77)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(77).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(78)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(78).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(79)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(79).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(8)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(8).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(80)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(80).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(81)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(81).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(82)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(82).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(83)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(83).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(84)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(84).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(85)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(85).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(86)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(86).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(87)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(87).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(88)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(88).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(89)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(89).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(9)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(9).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(90)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(90).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(91)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(91).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(92)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(92).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(93)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(93).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(94)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(94).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(95)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(95).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(96)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(96).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(97)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(97).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(98)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(98).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider1_1_collision_(99)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider1_1_collision_(99).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(10)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(10).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(11)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(11).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(12)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(12).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(13)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(13).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(14)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(14).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(15)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(15).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(16)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(16).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(17)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(17).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(18)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(18).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(19)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(19).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(2).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(20)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(20).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(21)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(21).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(22)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(22).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(23)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(23).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(24)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(24).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(25)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(25).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(26)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(26).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(27)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(27).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(28)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(28).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(29)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(29).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(3)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(3).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(30)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(30).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(31)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(31).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(32)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(32).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(33)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(33).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(34)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(34).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(35)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(35).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(36)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(36).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(37)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(37).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(38)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(38).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(39)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(39).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(4)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(4).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(40)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(40).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(41)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(41).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(42)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(42).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(43)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(43).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(44)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(44).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(45)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(45).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(46)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(46).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(47)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(47).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(48)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(48).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(49)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(49).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(5)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(5).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(50)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(50).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(51)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(51).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(52)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(52).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(53)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(53).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(54)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(54).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(55)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(55).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(56)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(56).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(6)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(6).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(7)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(7).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(8)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(8).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Slider_jig_1_collision_(9)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Slider_jig_1_collision_(9).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Wall_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Wall_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Wall_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Wall_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Wall_1_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Wall_1_collision_(2).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="Wall_1_collision_(3)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/Wall_1_collision_(3).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="base_link" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/base_link.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="base_link_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/base_link_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket1_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket1_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket1_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket1_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1_collision_(2).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1_collision_(3)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1_collision_(3).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1_collision_(4)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1_collision_(4).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1_collision_(5)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1_collision_(5).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1_collision_(6)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1_collision_(6).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1_collision_(7)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1_collision_(7).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1_collision_(8)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1_collision_(8).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="braket2_1_collision_(9)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/braket2_1_collision_(9).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="motor_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/motor_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="motor_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/motor_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="motor_1_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/motor_1_collision_(2).obj" scale="0.001 0.001 0.001"/>
+    <mesh name="motor_shaft_1" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/motor_shaft_1.obj" scale="0.001 0.001 0.001"/>
+    <mesh name="motor_shaft_1_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Crank_slider_system_V3_Pjoint_description/urdf/motor_shaft_1_collision_(1).obj" scale="0.001 0.001 0.001"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="base_link"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="base_link_collision_(1)"/>
+
+
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="braket1_1"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket1_1_collision_(1)"/>
+
+
+
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="braket2_1"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket2_1_collision_(1)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket2_1_collision_(2)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket2_1_collision_(3)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket2_1_collision_(4)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket2_1_collision_(5)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket2_1_collision_(6)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket2_1_collision_(7)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket2_1_collision_(8)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="braket2_1_collision_(9)"/>
+
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="motor_1"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="motor_1_collision_(1)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="motor_1_collision_(2)"/>
+
+
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="Slider_jig_1"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(1)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(10)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(11)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(12)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(13)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(14)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(15)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(16)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(17)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(18)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(19)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(2)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(20)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(21)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(22)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(23)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(24)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(25)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(26)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(27)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(28)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(29)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(3)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(30)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(31)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(32)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(33)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(34)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(35)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(36)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(37)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(38)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(39)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(4)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(40)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(41)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(42)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(43)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(44)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(45)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(46)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(47)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(48)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(49)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(5)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(50)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(51)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(52)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(53)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(54)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(55)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(56)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(6)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(7)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(8)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider_jig_1_collision_(9)"/>
+
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(1)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(10)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(100)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(101)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(102)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(103)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(104)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(105)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(106)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(107)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(108)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(109)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(11)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(110)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(111)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(112)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(113)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(114)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(115)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(116)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(117)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(118)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(119)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(12)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(120)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(121)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(122)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(123)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(124)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(125)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(126)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(127)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(128)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(129)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(13)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(130)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(131)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(132)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(133)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(134)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(135)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(136)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(137)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(138)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(139)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(14)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(140)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(141)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(142)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(143)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(144)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(145)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(146)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(147)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(148)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(149)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(15)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(150)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(151)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(152)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(153)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(154)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(155)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(156)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(157)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(158)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(159)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(16)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(160)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(161)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(162)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(163)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(164)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(165)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(166)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(167)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(168)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(169)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(17)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(170)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(171)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(172)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(173)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(174)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(175)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(176)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(177)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(178)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(179)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(18)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(180)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(181)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(182)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(183)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(184)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(19)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(2)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(20)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(21)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(22)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(23)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(24)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(25)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(26)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(27)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(28)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(29)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(3)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(30)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(31)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(32)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(33)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(34)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(35)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(36)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(37)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(38)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(39)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(4)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(40)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(41)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(42)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(43)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(44)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(45)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(46)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(47)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(48)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(49)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(5)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(50)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(51)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(52)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(53)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(54)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(55)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(56)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(57)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(58)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(59)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(6)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(60)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(61)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(62)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(63)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(64)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(65)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(66)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(67)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(68)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(69)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(7)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(70)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(71)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(72)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(73)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(74)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(75)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(76)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(77)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(78)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(79)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(8)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(80)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(81)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(82)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(83)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(84)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(85)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(86)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(87)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(88)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(89)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(9)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(90)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(91)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(92)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(93)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(94)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(95)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(96)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(97)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(98)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(99)"/>
+
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="Slider1_1"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(1)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(10)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(100)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(101)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(102)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(103)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(104)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(105)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(106)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(107)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(108)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(109)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(11)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(110)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(111)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(112)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(113)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(114)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(115)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(116)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(117)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(118)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(119)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(12)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(120)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(121)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(122)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(123)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(124)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(125)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(126)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(127)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(128)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(129)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(13)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(130)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(131)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(132)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(133)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(134)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(135)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(136)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(137)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(138)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(139)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(14)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(140)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(141)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(142)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(143)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(144)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(145)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(146)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(147)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(148)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(149)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(15)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(150)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(151)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(152)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(153)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(154)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(155)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(156)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(157)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(158)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(159)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(16)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(160)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(161)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(162)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(163)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(164)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(165)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(166)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(167)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(168)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(169)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(17)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(170)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(171)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(172)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(173)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(174)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(175)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(176)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(177)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(178)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(179)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(18)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(180)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(181)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(182)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(183)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(184)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(19)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(2)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(20)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(21)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(22)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(23)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(24)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(25)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(26)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(27)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(28)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(29)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(3)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(30)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(31)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(32)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(33)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(34)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(35)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(36)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(37)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(38)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(39)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(4)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(40)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(41)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(42)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(43)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(44)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(45)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(46)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(47)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(48)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(49)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(5)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(50)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(51)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(52)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(53)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(54)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(55)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(56)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(57)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(58)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(59)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(6)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(60)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(61)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(62)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(63)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(64)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(65)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(66)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(67)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(68)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(69)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(7)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(70)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(71)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(72)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(73)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(74)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(75)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(76)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(77)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(78)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(79)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(8)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(80)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(81)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(82)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(83)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(84)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(85)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(86)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(87)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(88)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(89)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(9)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(90)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(91)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(92)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(93)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(94)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(95)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(96)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(97)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(98)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Slider1_1_collision_(99)"/>
+
+    <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="Wall_1"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Wall_1_collision_(1)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Wall_1_collision_(2)"/>
+    <geom rgba="0.7 0.7 0.7 1" type="mesh" mesh="Wall_1_collision_(3)"/>
+
+    <body name="motor_shaft_1" pos="0.11 0.05 -0.163">
+      <inertial pos="0.0272456 0 -0.00387279" quat="0.438592 0.554651 0.554651 0.438592" mass="0.0393299" diaginertia="8.01969e-06 7.70194e-06 2.31775e-06"/>
+      <joint name="Revolute 47" pos="0 0 0" axis="0 0 1"/>
+      
+      <geom pos="-0.11 -0.05 0.163" type="mesh" rgba="0.7 0.7 0.7 1" mesh="motor_shaft_1"/>
+      <geom pos="-0.11 -0.05 0.163" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link1_1"/>
+      <geom pos="-0.11 -0.05 0.163" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Link1_1_collision_(1)"/>
+      <geom pos="-0.11 -0.05 0.163" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Link1_1_collision_(2)"/>
+      <geom pos="-0.11 -0.05 0.163" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Link1_1_collision_(3)"/>
+      <geom pos="-0.11 -0.05 0.163" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Link1_1_collision_(4)"/>
+      <geom pos="-0.11 -0.05 0.163" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Link1_1_collision_(5)"/>
+      <geom pos="-0.11 -0.05 0.163" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Link1_1_collision_(6)"/>
+      <geom pos="-0.11 -0.05 0.163" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Link1_1_collision_(7)"/>
+      <geom pos="-0.11 -0.05 0.163" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Link1_1_collision_(8)"/>
+
+      <body name="Link2_1" pos="0.02 0 0.0195">
+        <inertial pos="0.047 0 0.005" quat="0 0.707107 0 0.707107" mass="0.168204" diaginertia="0.000169 0.000165 7e-06"/>
+        <joint name="Revolute 49" pos="0 0 0" axis="0 0 -1"/>
+        <geom pos="-0.13 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link2_1"/>
+        <geom pos="-0.13 -0.05 0.1435" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Link2_1_collision_(1)"/>
+        <body name="Link3_1" pos="0.094 0 0">
+          <inertial pos="0.0111852 0 -0.005" quat="0 0.707107 0 0.707107" mass="0.0459884" diaginertia="5e-06 4e-06 2e-06"/>
+          <joint name="Revolute 50" pos="0 0 0" axis="0 0 -1"/>
+          
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(1)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(2)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(3)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(4)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(5)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(6)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(7)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(8)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(9)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(10)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(11)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(12)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(13)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(14)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(15)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(16)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(17)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(18)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(19)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(20)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(21)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(22)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(23)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(24)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(25)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(26)"/>
+          <geom pos="-0.224 -0.05 0.1435" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Link3_1_collision_(27)"/>
+
+        </body>
+      </body>
+    </body>
+    <body name="Shaft_1" pos="0.2615 0.05 -0.1485">
+      <inertial pos="0.093282 0 0" mass="0.200519" diaginertia="8.3e-05 5.87253e-05 5.87253e-05"/>
+      <joint name="Slider 61" pos="0 0 0" axis="1 0 0" type="slide" actuatorfrcrange="-100 100"/>
+      
+      <geom pos="-0.251 -0.05 0.1485" quat="1 0 0 0" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Shaft_1"/>
+      <geom pos="-0.251 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Shaft_1_collision_(1)"/>
+      <geom pos="-0.251 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Shaft_1_collision_(2)"/>
+      <geom pos="-0.251 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Shaft_1_collision_(3)"/>
+
+      <geom pos="-0.2615 -0.05 0.1485" type="mesh" rgba="0.7 0.7 0.7 1" mesh="Impact_Plate_1"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(1)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(10)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(11)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(12)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(13)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(14)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(15)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(2)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(3)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(4)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(5)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(6)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(7)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(8)"/>
+      <geom pos="-0.2615 -0.05 0.1485" rgba="0.7 0.7 0.7 1" type="mesh" mesh="Impact_Plate_1_collision_(9)"/>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor joint="Revolute 47" ctrlrange="-3 3"/>
+    <motor joint="Revolute 49" ctrlrange="-150 150" gear="0.01" />
+    <motor joint="Revolute 50" ctrlrange="-150 150" gear="0.01" />
+    <general joint="Slider 61" ctrllimited="true" ctrlrange="-100 100" gear="1"/>
+  </actuator>
+  <equality>
+    <connect  body1="Link3_1" body2="Shaft_1" anchor = "3 0 0"/>
+  </equality>
+</mujoco>

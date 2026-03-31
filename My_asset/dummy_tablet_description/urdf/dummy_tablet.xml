@@ -1,0 +1,33 @@
+<mujoco model="dummy_tablet">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="base_link" content_type="model/stl" file="base_link.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="2-1_1" content_type="model/stl" file="2-1_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="1-2_1" content_type="model/stl" file="1-2_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="2-2_1" content_type="model/stl" file="2-2_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="3-2_1" content_type="model/stl" file="3-2_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="4-2_1" content_type="model/stl" file="4-2_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="5-2_1" content_type="model/stl" file="5-2_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="3-1_1" content_type="model/stl" file="3-1_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="4-1_1" content_type="model/stl" file="4-1_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="5-1_1" content_type="model/stl" file="5-1_1.stl" scale="0.001 0.001 0.001"/>
+  </asset>
+
+  <worldbody>
+    <body>
+      <joint type="free"/>
+      <inertial pos="0 0 0" mass = "0.0294375" diaginertia = "0.00006125 0.0000921875 0.0000921875"/>
+      <geom type="mesh" mass="0.0294375" rgba="0.7 0.7 0.7 1" mesh="base_link"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="2-1_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="3-1_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="4-1_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="5-1_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="1-2_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="2-2_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="3-2_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="4-2_1"/>
+      <geom type="mesh" rgba="0.7 0.7 0.7 1" mesh="5-2_1"/>
+    </body>
+  </worldbody>
+</mujoco>

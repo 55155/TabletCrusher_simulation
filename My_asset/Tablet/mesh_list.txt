@@ -1,0 +1,32 @@
+<mesh name="Tablet" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet.obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(1)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(1).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(10)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(10).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(11)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(11).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(12)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(12).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(13)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(13).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(14)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(14).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(15)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(15).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(2)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(2).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(3)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(3).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(4)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(4).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(5)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(5).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(6)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(6).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(7)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(7).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(8)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(8).obj" scale="0.001 0.001 0.001"/>
+<mesh name="Tablet_collision_(9)" file="/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/Tablet/Tablet_collision_(9).obj" scale="0.001 0.001 0.001"/>
+<geom rgba="0.650 0.350 0.350 1" type="mesh" mesh="Tablet"/>
+<geom rgba="0.675 0.465 0.325 1" type="mesh" mesh="Tablet_collision_(1)"/>
+<geom rgba="0.700 0.620 0.300 1" type="mesh" mesh="Tablet_collision_(10)"/>
+<geom rgba="0.635 0.725 0.275 1" type="mesh" mesh="Tablet_collision_(11)"/>
+<geom rgba="0.450 0.750 0.250 1" type="mesh" mesh="Tablet_collision_(12)"/>
+<geom rgba="0.225 0.775 0.225 1" type="mesh" mesh="Tablet_collision_(13)"/>
+<geom rgba="0.200 0.800 0.440 1" type="mesh" mesh="Tablet_collision_(14)"/>
+<geom rgba="0.175 0.825 0.695 1" type="mesh" mesh="Tablet_collision_(15)"/>
+<geom rgba="0.150 0.710 0.850 1" type="mesh" mesh="Tablet_collision_(2)"/>
+<geom rgba="0.125 0.425 0.875 1" type="mesh" mesh="Tablet_collision_(3)"/>
+<geom rgba="0.100 0.100 0.900 1" type="mesh" mesh="Tablet_collision_(4)"/>
+<geom rgba="0.415 0.075 0.925 1" type="mesh" mesh="Tablet_collision_(5)"/>
+<geom rgba="0.770 0.050 0.950 1" type="mesh" mesh="Tablet_collision_(6)"/>
+<geom rgba="0.975 0.025 0.785 1" type="mesh" mesh="Tablet_collision_(7)"/>
+<geom rgba="1.000 0.000 0.400 1" type="mesh" mesh="Tablet_collision_(8)"/>
+<geom rgba="0.650 0.350 0.350 1" type="mesh" mesh="Tablet_collision_(9)"/>

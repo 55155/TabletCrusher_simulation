@@ -1,0 +1,22 @@
+# config.yaml
+# This file contains configuration settings for the simulation environment.
+
+
+simulation:
+  time_step: 0.01
+  max_steps: 1000
+  gravity: [0.0, 0.0, -9.81]
+  enable_collision: true
+
+
+My_robot:
+  urdf_path: "/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/src/My_robot/"
+
+
+
+file_path:
+  project: "/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/"
+  src : "/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/src/"
+  video: "/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/video/"
+  asset: "/home/seongjin/Desktop/Seongjin/genesis_simulation_on_linux/My_asset/"
+

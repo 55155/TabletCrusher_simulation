@@ -1,0 +1,9 @@
+<launch>
+
+<rosparam file="$(find Crank_slider_system_V1_description)/launch/controller.yaml" command="load"/>
+<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="Crank_slider_system_V1" args="Revolute 47_position_controller Revolute 49_position_controller Revolute 50_position_controller Slider 61_position_controller joint_state_controller "/>
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+  <remap from="/joint_states" to="/Crank_slider_system_V1/joint_states"/>
+</node>
+
+</launch>
